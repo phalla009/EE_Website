@@ -1,27 +1,24 @@
 <div class="featured-header">
   <h2 class="featured-title">FEATURED PRODUCTS</h2>
 </div>
+
 <div class="search-section">
   <div class="search-wrapper">
     <label class="search-label">ស្វែងរក</label>
     <i class="fa-solid fa-magnifying-glass search-icon"></i>
-
     <input
       type="text"
-      placeholder="Search by name or category..."
+      placeholder="Search by name..."
       (input)="updateSearch($event)"
       [value]="searchTerm()"
       class="search-input"
     />
-
-    @if (searchTerm()) {
-      <i class="fa-solid fa-xmark clear-icon" (click)="searchTerm.set('')"></i>
-    }
   </div>
 </div>
+
 <section class="product-grid">
   @for (item of filteredProducts(); track item.id) {
-    <div class="product-card">
+    <div class="product-card" (click)="openDetails(item)">
       <div class="product-badge">{{ item.category }}</div>
       <div class="image-container">
         <img [src]="item.image" [alt]="item.name" />
@@ -32,13 +29,46 @@
         <p class="specs-label">Technical Specifications:</p>
         <p class="specs-text">{{ item.specs }}</p>
       </div>
-      <div class="view-footer">
-        <span>Product Details</span>
-      </div>
-    </div>
-  } @empty {
-    <div class="empty-state">
-      <p>No products found matching "{{ searchTerm() }}"</p>
+      <!-- <div class="view-footer">
+        <span>Click for Details</span>
+      </div> -->
     </div>
   }
 </section>
+
+@if (selectedProduct(); as product) {
+  <div class="modal-overlay" (click)="closeModal()">
+    <div class="modal-container" (click)="$event.stopPropagation()">
+      <button class="modal-close" (click)="closeModal()">&times;</button>
+
+      <div class="modal-content">
+        <div class="modal-left">
+          <div class="modal-img-wrapper">
+            <img [src]="product.image" [alt]="product.name" />
+          </div>
+        </div>
+
+        <div class="modal-right">
+          <span class="modal-category">{{ product.category }}</span>
+          <h2 class="modal-title">{{ product.name }}</h2>
+          <div class="modal-divider"></div>
+
+          <div class="modal-section">
+            <h4>Technical Details</h4>
+            <p>{{ product.specs }}</p>
+          </div>
+
+          <div class="modal-section">
+            <h4>Description</h4>
+            <p>
+              High-quality professional grade equipment designed for durability and precision
+              performance in all conditions.
+            </p>
+          </div>
+
+          <button class="inquiry-btn">Inquiry Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+}

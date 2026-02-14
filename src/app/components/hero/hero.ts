@@ -10,7 +10,10 @@ import { CommonModule } from '@angular/common'; // សំខាន់សម្�
 })
 export class Hero {
   isShow: boolean = false;
-
+  expandedCards: { [key: string]: boolean } = {};
+  toggleReadMore(cardId: string) {
+    this.expandedCards[cardId] = !this.expandedCards[cardId];
+  }
   // តាមដានការ Scroll របស់ Browser
   @HostListener('window:scroll', [])
   onWindowScroll() {

@@ -6,7 +6,8 @@ import { Contact } from './components/contact/contact';
 import { Hero } from './components/hero/hero';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  // { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', component: Home },
   { path: 'home', component: Home },
   { path: 'product', component: ProductListComponent },
   { path: 'about', component: About },

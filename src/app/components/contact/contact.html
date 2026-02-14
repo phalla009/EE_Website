@@ -1,7 +1,6 @@
 <!-- Contact Section -->
 <div class="contact-container">
   <h2>Get in Touch</h2>
-
   <!-- Company Info + Map (Left - Right) -->
   <div class="contact-info-map">
     <div class="company-info">
@@ -26,7 +25,9 @@
       ></iframe>
     </div>
   </div>
-
+  <div *ngIf="successMessage" class="success-alert">
+    ✅ Thanks for reaching out! Your message has been sent.
+  </div>
   <!-- Contact Form -->
   <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
     <div class="form-group">
@@ -39,7 +40,6 @@
         Name is required (min 3 chars).
       </small>
     </div>
-
     <div class="form-group">
       <label>Phone Number</label>
       <input type="tel" formControlName="phone" placeholder="Your phone number" />
@@ -47,7 +47,7 @@
         *ngIf="contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched"
         class="error"
       >
-        Please enter a valid phone number.
+        Phone number must contain numbers only and be exactly 9 digits.
       </small>
     </div>
 

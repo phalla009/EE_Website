@@ -469,7 +469,28 @@ html {
   line-height: 1.6;
   margin-bottom: 20px;
 }
+.blog-info p {
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* កំណត់ឱ្យបង្ហាញតែ ១ ជួរ */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all 0.3s ease-in-out;
+}
 
+/* នៅពេលចុច Read More ឱ្យបង្ហាញអត្ថបទទាំងអស់ */
+.blog-info p.show-all {
+  -webkit-line-clamp: unset;
+  display: block;
+}
+
+.read-more {
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 10px;
+  color: #007bff; /* ពណ៌តាម Design របស់អ្នក */
+  text-decoration: none;
+}
 .read-more {
   color: #f7c934;
   text-decoration: none;

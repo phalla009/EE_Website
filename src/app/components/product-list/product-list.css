@@ -218,3 +218,248 @@
     height: 180px;
   }
 }
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Modal Container */
+.modal-container {
+  background: white;
+  width: 100%;
+  max-width: 900px;
+  /* height: 600px; */
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: #eee;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 10;
+  transition: 0.2s;
+}
+
+.modal-close:hover {
+  background: #f7c934;
+  color: white;
+}
+
+/* Content Layout */
+.modal-content {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  min-height: 450px;
+}
+
+.modal-left {
+  background: #f9f9f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.modal-img-wrapper img {
+  max-width: 100%;
+  max-height: 350px;
+  object-fit: contain;
+}
+
+.modal-right {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-category {
+  color: #f7c934;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+
+.modal-title {
+  font-size: 2rem;
+  margin: 10px 0;
+  color: #2c3e50;
+}
+
+.modal-divider {
+  width: 50px;
+  height: 4px;
+  background: #f7c934;
+  margin-bottom: 25px;
+}
+
+.modal-section h4 {
+  margin-bottom: 8px;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.modal-section p {
+  margin-bottom: 20px;
+  line-height: 1.6;
+  color: #444;
+}
+
+.inquiry-btn {
+  margin-top: auto;
+  background: #f7c934;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 24px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.inquiry-btn:hover {
+  background: #d2a206;
+  transform: translateY(-2px);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* --- Optimized Mobile Responsive --- */
+
+@media (max-width: 768px) {
+  .modal-overlay {
+    padding: 10px;
+  }
+
+  .modal-container {
+    margin-left: -15px;
+    width: 90%;
+    max-width: 100%;
+    border-radius: 15px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .modal-content {
+    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  /* Image Section */
+  .modal-left {
+    padding: 20px;
+    background: #fdfdfd;
+    min-height: 200px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .modal-img-wrapper img {
+    max-height: 200px;
+    width: auto;
+  }
+
+  /* Text Details Section */
+  .modal-right {
+    padding: 25px 20px;
+    text-align: left;
+  }
+
+  .modal-title {
+    font-size: 1.6rem;
+    line-height: 1.2;
+    margin-bottom: 5px;
+  }
+
+  .modal-category {
+    font-size: 0.75rem;
+  }
+
+  .modal-divider {
+    margin-bottom: 20px;
+  }
+
+  .modal-section h4 {
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+  }
+
+  .modal-section p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  /* Floating Close Button positioning */
+  .modal-close {
+    top: 10px;
+    right: 10px;
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+    background: rgba(240, 240, 240, 0.9);
+  }
+
+  /* Button styling to match image */
+  .inquiry-btn {
+    padding: 14px;
+    font-size: 1rem;
+    border-radius: 8px;
+    margin-top: 10px;
+  }
+}
+
+/* Extra Small Screens (Phones under 400px) */
+@media (max-width: 400px) {
+  .modal-title {
+    font-size: 1.4rem;
+  }
+
+  .modal-right {
+    padding: 20px 15px;
+  }
+}
