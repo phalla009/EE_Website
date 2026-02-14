@@ -12,6 +12,11 @@ import { toSignal } from '@angular/core/rxjs-interop';
   styleUrls: ['./product-list.css'],
 })
 export class ProductListComponent {
+  expandedCards: { [key: string]: boolean } = {};
+
+  toggleReadMore(key: string) {
+    this.expandedCards[key] = !this.expandedCards[key];
+  }
   private route = inject(ActivatedRoute);
   private routeParams = toSignal(this.route.params);
   products = signal([
