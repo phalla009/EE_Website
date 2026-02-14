@@ -414,7 +414,7 @@ html {
 
 .blog-card:hover {
   transform: translateY(-10px);
-  border-color: #ffffff;
+  border-color: #f7c934;
   background: rgba(255, 255, 255, 0.05);
 }
 

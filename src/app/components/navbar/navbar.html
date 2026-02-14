@@ -2,7 +2,6 @@
   <div class="logo">MyStore</div>
 
   <div class="menu-toggle" (click)="isOpen = !isOpen">
-    <!-- Hamburger → X animation -->
     <span [class.open]="isOpen"></span>
     <span [class.open]="isOpen"></span>
     <span [class.open]="isOpen"></span>
@@ -12,16 +11,66 @@
     <li><a routerLink="/" (click)="closeMenu()">HOME</a></li>
 
     <li class="dropdown">
-      <a href="#" class="dropbtn" (click)="toggleCategory($event)">
+      <a href="javascript:void(0)" class="dropbtn" (click)="toggleCategory($event)">
         ALL CATEGORIES
         <span class="dropdown-icon" [class.rotate]="isCategoryOpen">&#9662;</span>
       </a>
 
       <ul class="dropdown-content" [class.show]="isCategoryOpen">
-        <li><a routerLink="/category/electronics" (click)="closeMenu()">Electronics</a></li>
-        <li><a routerLink="/category/fashion" (click)="closeMenu()">Fashion</a></li>
-        <li><a routerLink="/category/books" (click)="closeMenu()">Books</a></li>
-        <li><a routerLink="/category/sports" (click)="closeMenu()">Sports</a></li>
+        <li>
+          <a routerLink="/category/electrical" (click)="closeMenu()">
+            Electrical Control
+            <span class="khmer-sub">ការត្រួតពិនិត្យអគ្គិសនី</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/category/Power" (click)="closeMenu()">
+            Power Supply
+            <span class="khmer-sub">ការផ្គត់ផ្គង់ថាមពល</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/category/Protection" (click)="closeMenu()">
+            Protection Device
+            <span class="khmer-sub">ឧបករណ៍ការពារ</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/category/Renewable" (click)="closeMenu()">
+            Renewable Energy
+            <span class="khmer-sub">ថាមពលកកើតឡើងវិញ</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/category/Wiring" (click)="closeMenu()">
+            Wiring Access
+            <span class="khmer-sub">គ្រឿងតំណបណ្តាញខ្សែ</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/category/Measurement" (click)="closeMenu()">
+            Measurement
+            <span class="khmer-sub">ការវាស់វែង</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/category/Control" (click)="closeMenu()">
+            Control Panel
+            <span class="khmer-sub">ផ្ទាំងបញ្ជា</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/category/Automation" (click)="closeMenu()">
+            Automation
+            <span class="khmer-sub">ស្វ័យប្រវត្តិកម្ម</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/category/Lighting" (click)="closeMenu()">
+            Lighting
+            <span class="khmer-sub">ពន្លឺ/អំពូល</span>
+          </a>
+        </li>
       </ul>
     </li>
 

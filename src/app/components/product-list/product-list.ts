@@ -1,6 +1,8 @@
-import { Component, signal, computed } from '@angular/core';
+import { Component, signal, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Footer } from '../footer/footer';
+import { ActivatedRoute } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-product',
@@ -10,6 +12,8 @@ import { Footer } from '../footer/footer';
   styleUrls: ['./product-list.css'],
 })
 export class ProductListComponent {
+  private route = inject(ActivatedRoute);
+  private routeParams = toSignal(this.route.params);
   products = signal([
     {
       id: 1,
@@ -172,33 +176,34 @@ export class ProductListComponent {
       specs: 'Power: 50W, Voltage: 220V, Waterproof IP65, Aluminum Body.',
     },
   ]);
-
   searchTerm = signal('');
   filteredProducts = computed(() => {
     const term = this.searchTerm().toLowerCase().trim();
-    if (!term) return this.products();
+    const catParam = this.routeParams()?.['id'];
 
-    return this.products().filter(
-      (p) => p.name.toLowerCase().includes(term) || p.category.toLowerCase().includes(term),
-    );
+    let list = this.products();
+    if (catParam && catParam !== 'all') {
+      list = list.filter((p) => {
+        return p.category.toLowerCase().includes(catParam.toLowerCase());
+      });
+    }
+    if (term) {
+      list = list.filter(
+        (p) => p.name.toLowerCase().includes(term) || p.category.toLowerCase().includes(term),
+      );
+    }
+    return list;
   });
-
   updateSearch(event: Event) {
     const value = (event.target as HTMLInputElement).value;
     this.searchTerm.set(value);
   }
 
-  // New signal for the modal state
   selectedProduct = signal<any | null>(null);
-
-  // Method to open modal
   openDetails(product: any) {
     this.selectedProduct.set(product);
-    // Prevent background scrolling while modal is open
     document.body.style.overflow = 'hidden';
   }
-
-  // Method to close modal
   closeModal() {
     this.selectedProduct.set(null);
     document.body.style.overflow = 'auto';

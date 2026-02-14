@@ -10,6 +10,8 @@ export const routes: Routes = [
   { path: '', component: Home },
   { path: 'home', component: Home },
   { path: 'product', component: ProductListComponent },
+  { path: 'product', component: ProductListComponent },
+  { path: 'category/:id', component: ProductListComponent },
   { path: 'about', component: About },
   { path: 'contact', component: Contact },
 ];

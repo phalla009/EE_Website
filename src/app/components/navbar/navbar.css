@@ -101,6 +101,44 @@
   color: #1e3c72;
 }
 
+.dropdown-content li a {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #333;
+  transition: background 0.3s;
+}
+
+.khmer-sub {
+  font-size: 11px;
+  color: #888;
+  font-weight: normal;
+  margin-top: 2px;
+  font-family: 'Kantumruy Pro', 'Hanuman', sans-serif;
+}
+
+.dropdown-content li a:hover {
+  background-color: #f5f5f5;
+}
+
+.dropdown-content li a:hover .khmer-sub {
+  color: #666;
+}
+
+.dropdown-icon {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.dropdown-icon.rotate {
+  transform: rotate(180deg);
+}
+
+.dropdown-content.show {
+  display: block;
+}
 /* ================= HAMBURGER ================= */
 .menu-toggle {
   display: none;
@@ -135,7 +173,7 @@
     background: #3d484f;
     flex-direction: column;
     padding: 60px 20px;
-    gap: 10px;
+    gap: 15px;
     transition: right 0.4s ease;
     overflow-y: auto;
     display: flex;
