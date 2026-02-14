@@ -1,0 +1,81 @@
+<section class="hero">
+  <div class="hero-content">
+    <h1 class="fade-up">Innovative IT Solutions</h1>
+    <p class="fade-up delay-1">
+      We provide modern technology solutions <br />
+      to help your business grow faster and smarter.
+    </p>
+
+    <div class="hero-buttons fade-up delay-2">
+      <button class="btn-primary">Explore Services</button>
+      <button class="btn-outline">Contact Us</button>
+    </div>
+  </div>
+
+  <button class="back-to-top" [class.show]="isShow" (click)="scrollToTop()">
+    <i class="fa-solid fa-angles-up"></i>
+  </button>
+</section>
+<section class="blog-section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="subtitle">Latest Updates</span>
+      <h2>Our Insights & Blog</h2>
+      <p>Stay ahead with the latest trends in technology and business growth.</p>
+    </div>
+
+    <div class="blog-grid">
+      <article class="blog-card fade-up delay-1">
+        <div class="blog-img">
+          <img
+            src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=800"
+            alt="Tech Trends"
+          />
+          <span class="category">Technology</span>
+        </div>
+        <div class="blog-info">
+          <span class="date">May 15, 2024</span>
+          <h3>The Future of AI in Modern Business</h3>
+          <p>
+            Discover how Artificial Intelligence is reshaping the way small businesses operate...
+          </p>
+          <a href="#" class="read-more">Read More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <article class="blog-card fade-up delay-2">
+        <div class="blog-img">
+          <img
+            src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800"
+            alt="Cloud Solutions"
+          />
+          <span class="category">Cloud</span>
+        </div>
+        <div class="blog-info">
+          <span class="date">May 12, 2024</span>
+          <h3>Why Cloud Security Matters in 2024</h3>
+          <p>
+            Protecting your data has never been more critical. Here are the top 5 security tips...
+          </p>
+          <a href="#" class="read-more">Read More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </article>
+
+      <article class="blog-card fade-up delay-1">
+        <div class="blog-img">
+          <img
+            src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=800"
+            alt="Software Dev"
+          />
+          <span class="category">Software</span>
+        </div>
+        <div class="blog-info">
+          <span class="date">May 10, 2024</span>
+          <h3>Optimizing Workflow with Custom Apps</h3>
+          <p>Custom software solutions can save your team hours of manual work every week...</p>
+          <a href="#" class="read-more">Read More <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

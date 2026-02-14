@@ -1,0 +1,146 @@
+/* --- Container --- */
+.contact-container {
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  font-family: 'Roboto', sans-serif;
+}
+
+.contact-container h2 {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #f7c934;
+}
+
+/* --- LEFT RIGHT LAYOUT --- */
+.contact-info-map {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.company-info,
+.contact-map {
+  flex: 1;
+}
+
+/* --- Company Info --- */
+.company-info {
+  background: #f9f9f9;
+  padding: 2rem;
+  border-radius: 16px;
+}
+
+.company-info h3 {
+  margin-bottom: 1rem;
+  color: #f7c934;
+}
+
+.company-info p {
+  margin: 0.7rem 0;
+  color: #555;
+  font-size: 1rem;
+}
+
+.company-info i {
+  margin-right: 0.7rem;
+  color: #f7c934;
+}
+
+/* --- Map --- */
+.contact-map {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.contact-map iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 350px;
+  border: none;
+}
+
+/* --- Form --- */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  display: block;
+  color: #444;
+}
+
+input,
+textarea {
+  width: 97%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+input {
+  border-radius: 24px;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #f7c934;
+  box-shadow: 0 0 3px #f7c934;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* --- Button --- */
+button {
+  background: #f7c934;
+  color: white;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-3px);
+  opacity: 0.9;
+}
+
+button:disabled {
+  background: #eee;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+/* --- Error --- */
+.error {
+  color: #d9534f;
+  font-size: 0.85rem;
+  margin-top: 4px;
+  display: block;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .contact-info-map {
+    flex-direction: column;
+  }
+
+  .contact-container {
+    padding: 1.5rem;
+  }
+}

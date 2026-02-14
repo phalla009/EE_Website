@@ -1,0 +1,32 @@
+<nav class="navbar">
+  <div class="logo">MyStore</div>
+
+  <div class="menu-toggle" (click)="isOpen = !isOpen">
+    <!-- Hamburger → X animation -->
+    <span [class.open]="isOpen"></span>
+    <span [class.open]="isOpen"></span>
+    <span [class.open]="isOpen"></span>
+  </div>
+
+  <ul class="nav-links" [class.active]="isOpen">
+    <li><a routerLink="/" (click)="closeMenu()">HOME</a></li>
+
+    <li class="dropdown">
+      <a href="#" class="dropbtn" (click)="toggleCategory($event)">
+        ALL CATEGORIES
+        <span class="dropdown-icon" [class.rotate]="isCategoryOpen">&#9662;</span>
+      </a>
+
+      <ul class="dropdown-content" [class.show]="isCategoryOpen">
+        <li><a routerLink="/category/electronics" (click)="closeMenu()">Electronics</a></li>
+        <li><a routerLink="/category/fashion" (click)="closeMenu()">Fashion</a></li>
+        <li><a routerLink="/category/books" (click)="closeMenu()">Books</a></li>
+        <li><a routerLink="/category/sports" (click)="closeMenu()">Sports</a></li>
+      </ul>
+    </li>
+
+    <li><a routerLink="/product" (click)="closeMenu()">PRODUCTS</a></li>
+    <li><a routerLink="/about" (click)="closeMenu()">ABOUT</a></li>
+    <li><a routerLink="/contact" (click)="closeMenu()">CONTACT</a></li>
+  </ul>
+</nav>

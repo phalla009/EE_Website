@@ -1,0 +1,492 @@
+.hero {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: #fff;
+  padding: 0 20px;
+
+  /* Tech-themed gradient + animated background lines */
+  background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+}
+
+/* Animated digital grid lines */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background-image:
+    linear-gradient(90deg, rgba(0, 224, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(rgba(0, 224, 255, 0.08) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: tech-grid 20s linear infinite;
+  z-index: 1;
+}
+
+@keyframes tech-grid {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-50px, -50px);
+  }
+}
+
+/* Floating neon glow dots */
+.hero::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 224, 255, 0.3) 0%, transparent 70%);
+  top: 30%;
+  left: 60%;
+  filter: blur(80px);
+  animation: float-dot 10s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes float-dot {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-30px, 40px);
+  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-content h1 {
+  font-size: 55px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 18px;
+  max-width: 600px;
+  margin: 0 auto 30px;
+  opacity: 0.85;
+}
+
+/* Buttons */
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.btn-primary {
+  padding: 12px 32px;
+  background: #f7c934;
+  border: none;
+  border-radius: 40px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(227, 252, 255, 0.4);
+}
+
+.btn-outline {
+  padding: 12px 32px;
+  background: transparent;
+  border: 2px solid #f7c934;
+  color: #f7c934;
+  border-radius: 40px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-outline:hover {
+  background: #f7c934;
+  color: #000;
+  transform: translateY(-4px);
+}
+
+/* Fade-up animation */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeUp 1s ease forwards;
+}
+
+/* Delay example */
+.delay-1 {
+  animation-delay: 0.5s;
+}
+
+/* Keyframes */
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments for small screens */
+@media (max-width: 768px) {
+  .fade-up {
+    font-size: 16px; /* smaller font for phones */
+    line-height: 1.5; /* better readability */
+    padding: 0 15px; /* prevent text touching screen edges */
+  }
+}
+
+@media (max-width: 480px) {
+  .fade-up {
+    margin-right: 20px;
+    font-size: 14px; /* even smaller for very small phones */
+    transform: translateY(20px); /* reduce movement for small screens */
+  }
+}
+
+.delay-2 {
+  margin-right: 20px;
+  animation-delay: 0.8s;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Back to Top Button Styling */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background-color: #f7c934;
+  color: #000;
+  border: none;
+  border-radius: 50%;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 2000;
+  opacity: 0; /* លាក់វាសិន */
+  visibility: hidden;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 15px rgba(255, 255, 0, 0.4);
+}
+
+.back-to-top.show {
+  opacity: 1; /* បង្ហាញមកវិញ */
+  visibility: visible;
+  transform: translateY(-10px); /* រំកិលឡើងលើបន្តិចពេលបង្ហាញ */
+}
+
+.back-to-top:hover {
+  background-color: #fff;
+  transform: translateY(-15px);
+}
+
+/* ធ្វើឱ្យការ Scroll មានសភាពរលូន (Smooth) */
+html {
+  /* បន្ថែម Font ឱ្យមើលទៅទំនើប */
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+
+  .hero {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    /* ប្តូរពណ៌ Background ឱ្យមើលទៅជ្រៅ និងមានតម្លៃ (Deep Dark Blue) */
+    background: radial-gradient(circle at 0% 0%, #1e3c72 0%, #111827 50%, #000000 100%);
+    color: white;
+    padding: 0 20px;
+  }
+
+  /* បន្ថែមពន្លឺ Glow នៅពីក្រោយ Content */
+  .hero::after {
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: rgba(0, 224, 255, 0.15);
+    filter: blur(100px);
+    border-radius: 50%;
+    z-index: 1;
+  }
+
+  /* រង្វង់មូល Floating (ឱ្យវាមានលក្ខណៈទន់ជាងមុន) */
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: linear-gradient(45deg, rgba(0, 224, 255, 0.1), rgba(0, 242, 254, 0.05));
+    border-radius: 50%;
+    top: -100px;
+    right: -100px;
+    animation: float 8s ease-in-out infinite;
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Gradient Text សម្រាប់ Title */
+  .hero-content h1 {
+    font-size: clamp(40px, 8vw, 72px);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    background: linear-gradient(to right, #ffffff, #00e0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -2px;
+  }
+
+  .hero-content p {
+    font-size: 1.1rem;
+    max-width: 650px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  /* ប៊ូតុងបែប Modern (Glassmorphism & Neon Glow) */
+  .hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .btn-primary {
+    padding: 16px 36px;
+    background: #f7c934;
+    color: #000;
+    border: none;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 224, 255, 0.4);
+    background: #fff;
+  }
+
+  .btn-outline {
+    padding: 16px 36px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px); /* Glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border-radius: 14px;
+    font-weight: 600;
+    transition: 0.4s;
+  }
+
+  .btn-outline:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #f7c934;
+    color: #f7c934;
+  }
+
+  /* Back to Top - Glass Style */
+  .back-to-top {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 56px;
+    height: 56px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border-radius: 18px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .back-to-top:hover {
+    background: #00e0ff;
+    color: #000;
+    border-color: #00e0ff;
+    box-shadow: 0 10px 25px rgba(0, 224, 255, 0.3);
+  }
+
+  /* Keyframes */
+  @keyframes float {
+    0%,
+    100% {
+      transform: translate(0, 0);
+    }
+    50% {
+      transform: translate(-20px, 40px);
+    }
+  }
+  scroll-behavior: smooth;
+}
+.blog-section {
+  padding: 100px 20px;
+  background-color: #0b0f1a; /* Darker than hero for contrast */
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-header .subtitle {
+  color: #f7c934;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 14px;
+}
+
+.section-header h2 {
+  font-size: 42px;
+  color: #fff;
+  margin: 10px 0 20px;
+}
+
+.section-header p {
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Blog Grid */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+}
+
+.blog-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: 0.4s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-10px);
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.blog-img {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+
+.blog-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.5s ease;
+}
+
+.blog-card:hover .blog-img img {
+  transform: scale(1.1);
+}
+
+.category {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: #f7c934;
+  color: #000;
+  padding: 5px 15px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.blog-info {
+  padding: 25px;
+}
+
+.blog-info .date {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+}
+
+.blog-info h3 {
+  color: #fff;
+  margin: 15px 0;
+  font-size: 22px;
+  line-height: 1.4;
+}
+
+.blog-info p {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.read-more {
+  color: #f7c934;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.3s;
+}
+
+.read-more:hover {
+  gap: 15px;
+}
+
+/* Responsive Grid Fix */
+@media (max-width: 480px) {
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+}

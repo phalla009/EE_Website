@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 50px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #3d484f;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 700;
+  color: #f7c934;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+/* ================= DESKTOP LINKS ================= */
+.nav-links {
+  margin-right: 100px;
+  list-style: none;
+  display: flex;
+  gap: 35px;
+  align-items: center;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  font-size: 16px;
+  position: relative;
+  transition: 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #f7c934;
+}
+
+/* ================= DROPDOWN (DESKTOP) ================= */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  position: absolute;
+  border-radius: 8px;
+  top: 100%;
+  left: 0;
+  min-width: 200px;
+  background: #f7c934;
+  padding: 8px 0;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+  z-index: 2000;
+
+  /* លាក់សម្រាប់ Desktop */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+.dropdown-icon {
+  display: inline-block;
+  transition: transform 0.3s ease;
+  margin-left: 8px;
+  font-size: 24px;
+  margin-top: -5px;
+  vertical-align: middle;
+}
+.dropdown-icon.rotate {
+  transform: rotate(180deg);
+}
+.dropdown-content.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-content li a {
+  display: block;
+  padding: 12px 18px;
+  color: #333;
+}
+
+.dropdown-content li a:hover {
+  background: #f1f5ff;
+  color: #1e3c72;
+}
+
+/* ================= HAMBURGER ================= */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  height: 3px;
+  width: 100%;
+  background: white;
+  border-radius: 2px;
+  transition: 0.3s ease;
+}
+
+/* ================= MOBILE (SCREEN < 768px) ================= */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    margin-right: 0px;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: #3d484f;
+    flex-direction: column;
+    padding: 60px 20px;
+    gap: 10px;
+    transition: right 0.4s ease;
+    overflow-y: auto;
+    display: flex;
+  }
+  .nav-links.active {
+    right: 0;
+  }
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-links a {
+    width: 100%;
+    padding: 12px 10px;
+  }
+
+  /* កែសម្រួល Dropdown សម្រាប់ Mobile */
+  .dropdown-content {
+    display: block;
+    position: relative;
+    top: 0;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    margin-top: 5px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+    padding: 0;
+  }
+
+  .dropdown-content.show {
+    max-height: 400px;
+    padding: 8px 0;
+  }
+
+  .dropdown-content li a {
+    padding-left: 25px;
+    font-size: 16px;
+  }
+}
+
+/* ================= TABLET ================= */
+@media (max-width: 992px) {
+  .navbar {
+    padding: 15px 30px;
+  }
+}

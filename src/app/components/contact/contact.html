@@ -1,0 +1,77 @@
+<!-- Contact Section -->
+<div class="contact-container">
+  <h2>Get in Touch</h2>
+
+  <!-- Company Info + Map (Left - Right) -->
+  <div class="contact-info-map">
+    <div class="company-info">
+      <h3>Our Office</h3>
+      <p>
+        <i class="fas fa-map-marker-alt"></i>
+        112 Street 97, Boeung Trabek, Chamkarmon, Phnom Penh, Cambodia
+      </p>
+      <p><i class="fas fa-phone"></i> +855 12 345 678</p>
+      <p><i class="fas fa-envelope"></i> info@company.com</p>
+      <p><i class="fas fa-clock"></i> Mon - Fri: 9:00 AM - 6:00 PM</p>
+    </div>
+
+    <div class="contact-map">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d31262.123456789!2d104.9233!3d11.5330!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310951abcdef12345%3A0xyour_pin_here!2s112%20Street%2097%2C%20Boeung%20Trabek%2C%20Chamkarmon%2C%20Phnom%20Penh%2C%20Cambodia!5e0!3m2!1sen!2skh!4v0000000000000!5m2!1sen!2skh"
+        width="100%"
+        height="350"
+        style="border: 0"
+        allowfullscreen=""
+        loading="lazy"
+      ></iframe>
+    </div>
+  </div>
+
+  <!-- Contact Form -->
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
+    <div class="form-group">
+      <label>Name</label>
+      <input formControlName="name" placeholder="Your name" />
+      <small
+        *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched"
+        class="error"
+      >
+        Name is required (min 3 chars).
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label>Phone Number</label>
+      <input type="tel" formControlName="phone" placeholder="Your phone number" />
+      <small
+        *ngIf="contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched"
+        class="error"
+      >
+        Please enter a valid phone number.
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" formControlName="email" placeholder="Email address" />
+      <small
+        *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched"
+        class="error"
+      >
+        Please enter a valid email.
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label>Message</label>
+      <textarea formControlName="message" rows="5" placeholder="Your message"></textarea>
+    </div>
+
+    <button type="submit" [disabled]="contactForm.invalid">Send Message</button>
+  </form>
+</div>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
