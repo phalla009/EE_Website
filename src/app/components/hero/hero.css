@@ -494,5 +494,6 @@ html {
 @media (max-width: 480px) {
   .blog-grid {
     grid-template-columns: 1fr;
+    width: 350px;
   }
 }

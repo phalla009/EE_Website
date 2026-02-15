@@ -16,7 +16,7 @@ body {
   width: 100%;
   max-width: 100vw; /* Strict viewport constraint */
   height: 100%;
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
   background: #fff;
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%; /* Prevents text zooming on orientation change */
