@@ -49,7 +49,7 @@
 }
 
 .logo .country-name {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
   color: #ffffff;
   letter-spacing: 2px;
@@ -58,10 +58,6 @@
   margin-bottom: -10px;
   padding-bottom: 0px;
 }
-
-/* .logo:hover {
-  transform: scale(1.02);
-} */
 /* ================= DESKTOP LINKS ================= */
 .nav-links {
   margin-right: 100px;
