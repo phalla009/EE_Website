@@ -170,7 +170,9 @@
     transform: translateY(0);
   }
 }
-/* Back to Top Button Styling */
+/* ---------------------------------------
+   BACK TO TOP BUTTON (FIXED)
+   --------------------------------------- */
 .back-to-top {
   position: fixed;
   bottom: 30px;
@@ -181,25 +183,64 @@
   color: #000;
   border: none;
   border-radius: 50%;
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 20px; /* បន្ថយទំហំបន្តិចឱ្យសមជាមួយរង្វង់ */
   cursor: pointer;
-  z-index: 2000;
-  opacity: 0; /* លាក់វាសិន */
+  z-index: 9999; /* ឱ្យខ្ពស់ជាងគេបំផុត */
+
+  /* ការពារការបាត់ Icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* បែបផែនបង្ហាញ/លាក់ */
+  opacity: 0;
   visibility: hidden;
-  transition: all 0.4s ease;
-  box-shadow: 0 4px 15px rgba(255, 255, 0, 0.4);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 15px rgba(247, 201, 52, 0.4);
 }
 
+/* នៅពេលមាន Class .show ពី Angular */
 .back-to-top.show {
-  opacity: 1; /* បង្ហាញមកវិញ */
+  opacity: 1;
   visibility: visible;
-  transform: translateY(-10px); /* រំកិលឡើងលើបន្តិចពេលបង្ហាញ */
+  transform: translateY(-10px);
 }
 
 .back-to-top:hover {
-  background-color: #fff;
+  background-color: #ffffff;
   transform: translateY(-15px);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+}
+
+/* Responsive សម្រាប់ទូរស័ព្ទ */
+@media (max-width: 576px) {
+  .back-to-top {
+    bottom: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+  }
+}
+
+/* ---------------------------------------
+   GLOBAL & HERO FIXES
+   --------------------------------------- */
+html {
+  scroll-behavior: smooth;
+}
+
+/* លុបការសរសេរ nested ក្នុង html { ... } ចោល ហើយសរសេរខាងក្រៅវិញ */
+.hero {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at 0% 0%, #1e3c72 0%, #111827 50%, #000000 100%);
+  color: white;
 }
 
 /* ធ្វើឱ្យការ Scroll មានសភាពរលូន (Smooth) */
@@ -314,39 +355,6 @@ html {
     background: rgba(255, 255, 255, 0.1);
     border-color: #f7c934;
     color: #f7c934;
-  }
-
-  /* Back to Top - Glass Style */
-  .back-to-top {
-    position: fixed;
-    bottom: 40px;
-    right: 40px;
-    width: 56px;
-    height: 56px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #fff;
-    border-radius: 18px;
-    font-size: 20px;
-    cursor: pointer;
-    z-index: 2000;
-    opacity: 0;
-    visibility: hidden;
-    transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .back-to-top.show {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-
-  .back-to-top:hover {
-    background: #00e0ff;
-    color: #000;
-    border-color: #00e0ff;
-    box-shadow: 0 10px 25px rgba(0, 224, 255, 0.3);
   }
 
   /* Keyframes */
