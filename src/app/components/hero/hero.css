@@ -10,11 +10,57 @@
   font-family: 'Plus Jakarta Sans', sans-serif;
   color: #fff;
   padding: 0 20px;
-
-  /* Tech-themed gradient + animated background lines */
   background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
 }
+.hero h1 {
+  color: #f7c934;
+}
+.service-container {
+  color: #f7c934;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px 20px;
+  font-family: 'Kantumruy Pro', sans-serif;
+  position: relative;
+  z-index: 2;
+}
 
+.service-item {
+  flex: 0 0 calc(50% - 10px);
+  text-align: center;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid rgba(247, 201, 52, 0.2);
+  transition: 0.3s ease;
+}
+
+.service-item h2 {
+  font-size: 16px;
+  margin: 0;
+}
+
+.service-item:hover {
+  background: rgba(247, 201, 52, 0.1);
+  border-color: #f7c934;
+  transform: translateY(-5px);
+}
+
+@media (min-width: 768px) {
+  .service-item {
+    flex: 0 0 auto;
+    font-size: 18px;
+    padding: 20px 30px;
+  }
+}
+
+@media (max-width: 360px) {
+  .service-item {
+    flex: 0 0 100%;
+  }
+}
 /* Animated digital grid lines */
 .hero::before {
   content: '';
@@ -71,68 +117,93 @@
 }
 
 .hero-content h1 {
-  font-size: 55px;
-  font-weight: 700;
-  margin-bottom: 20px;
+  font-size: clamp(32px, 8vw, 60px);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 15px;
+  background: linear-gradient(to right, #ffffff, #f7c934);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -1px;
 }
-
 .hero-content p {
-  font-size: 18px;
-  max-width: 600px;
-  margin: 0 auto 30px;
-  opacity: 0.85;
-}
+  /* កំណត់ទំហំឱ្យសមល្មម មិនធំពេក មិនតូចពេក */
+  font-size: clamp(15px, 4vw, 18px);
+  font-family: 'Kantumruy Pro', sans-serif;
+  font-weight: 300;
+  line-height: 1.8; /* បង្កើនចន្លោះជួរឱ្យស្រឡះភ្នែក */
+  color: rgba(255, 255, 255, 0.9); /* ពណ៌សរាងថ្លាបន្តិច */
+  max-width: 700px;
+  margin: 0 auto 35px;
+  text-align: center;
 
+  /* បន្ថែម Shadow ស្រាលៗដើម្បីឱ្យអក្សរដាច់ពី Background */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+
+  /* បន្ថែម padding ឆ្វេងស្តាំសម្រាប់ Mobile */
+  padding: 0 15px;
+}
 /* Buttons */
+/* Container សម្រាប់ប៊ូតុង */
 .hero-buttons {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+/* ប៊ូតុងរួម (Shared Styles) */
+.btn-primary,
+.btn-outline {
+  padding: 12px 28px;
+  border-radius: 50px; /* ធ្វើឱ្យរាងមូលដូច Capsule */
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  min-width: 160px;
 }
 
 .btn-primary {
-  padding: 12px 32px;
-  background: #f7c934;
-  border: none;
-  border-radius: 40px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s;
+  background-color: #f7c934;
+  color: #000;
+  border: 2px solid #f7c934;
 }
 
 .btn-primary:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(227, 252, 255, 0.4);
+  background-color: #e5b82d;
+  border-color: #e5b82d;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(247, 201, 52, 0.3);
 }
 
 .btn-outline {
-  padding: 12px 32px;
-  background: transparent;
-  border: 2px solid #f7c934;
+  background-color: transparent;
   color: #f7c934;
-  border-radius: 40px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s;
+  border: 2px solid #f7c934;
+}
+.btn-outline:hover {
+  background-color: rgba(247, 201, 52, 0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(247, 201, 52, 0.1);
 }
 
-.btn-outline:hover {
-  background: #f7c934;
-  color: #000;
-  transform: translateY(-4px);
-}
 @media (max-width: 480px) {
-  .btn-primary,
-  .btn-outline {
-    padding: 10px 24px;
-    font-size: 14px;
-    width: 100%;
-    box-sizing: border-box;
+  .hero-buttons {
+    flex-direction: row;
+    gap: 10px;
+    padding: 0 10px;
   }
 
-  .btn-primary:hover,
-  .btn-outline:hover {
-    transform: translateY(-2px);
+  .btn-primary,
+  .btn-outline {
+    padding: 10px 15px;
+    font-size: 14px;
+    min-width: 140px;
   }
 }
 /* Fade-up animation */
@@ -306,18 +377,6 @@ html {
   .hero-content {
     position: relative;
     z-index: 2;
-  }
-
-  /* Gradient Text សម្រាប់ Title */
-  .hero-content h1 {
-    font-size: clamp(40px, 8vw, 72px);
-    font-weight: 800;
-    line-height: 1.1;
-    margin-bottom: 24px;
-    background: linear-gradient(to right, #ffffff, #00e0ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    letter-spacing: -2px;
   }
 
   .hero-content p {
@@ -495,5 +554,21 @@ html {
   .blog-grid {
     grid-template-columns: 1fr;
     width: 350px;
+  }
+}
+@media (max-width: 480px) {
+  .hero {
+    height: auto;
+    min-height: 100vh;
+    padding-top: 80px;
+    padding-bottom: 40px;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-content h1 {
+    font-size: 32px;
+    margin-top: 10px;
+    line-height: 1.3;
   }
 }

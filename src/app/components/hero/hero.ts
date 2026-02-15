@@ -1,10 +1,11 @@
 import { Component, HostListener } from '@angular/core';
-import { CommonModule } from '@angular/common'; // សំខាន់សម្រាប់ប្រើ [class.show]
+import { CommonModule } from '@angular/common';
+import { Contact } from "../contact/contact"; // សំខាន់សម្រាប់ប្រើ [class.show]
 
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, Contact],
   templateUrl: './hero.html',
   styleUrl: './hero.css',
 })

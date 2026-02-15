@@ -1,13 +1,9 @@
-/* ---------------------------------------
-   1. GLOBAL RESET & BOX MODEL
-   Ensures padding/border doesn't add to width
-   --------------------------------------- */
 *,
 ::before,
 ::after {
   margin: 0;
   padding: 0;
-  box-sizing: border-box; /* This is the most important fix */
+  box-sizing: border-box;
 }
 
 html,
@@ -26,10 +22,6 @@ body::-webkit-scrollbar {
   display: none;
 }
 
-/* ---------------------------------------
-   2. RESPONSIVE ELEMENTS
-   Ensures media content stays inside the screen
-   --------------------------------------- */
 img,
 video,
 canvas,
@@ -48,12 +40,6 @@ a {
   color: inherit;
 }
 
-/* ---------------------------------------
-   3. RESPONSIVE UTILITIES (Mobile First)
-   Use these classes to control layout behavior
-   --------------------------------------- */
-
-/* Container to keep content centered and safe from edges */
 .container {
   width: 100%;
   padding-right: 15px;
@@ -62,13 +48,11 @@ a {
   margin-left: auto;
 }
 
-/* Extra Small Devices (Phones) */
 @media (max-width: 576px) {
   .container {
     max-width: 100%;
   }
 
-  /* Prevent long words or URLs from breaking the layout */
   p,
   h1,
   h2,
