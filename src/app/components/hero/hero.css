@@ -121,7 +121,20 @@
   color: #000;
   transform: translateY(-4px);
 }
+@media (max-width: 480px) {
+  .btn-primary,
+  .btn-outline {
+    padding: 10px 24px;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+  }
 
+  .btn-primary:hover,
+  .btn-outline:hover {
+    transform: translateY(-2px);
+  }
+}
 /* Fade-up animation */
 .fade-up {
   opacity: 0;
@@ -321,42 +334,6 @@ html {
     justify-content: center;
     gap: 15px;
   }
-
-  .btn-primary {
-    padding: 16px 36px;
-    background: #f7c934;
-    color: #000;
-    border: none;
-    border-radius: 14px;
-    font-weight: 700;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  }
-
-  .btn-primary:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 224, 255, 0.4);
-    background: #fff;
-  }
-
-  .btn-outline {
-    padding: 16px 36px;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px); /* Glass effect */
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #fff;
-    border-radius: 14px;
-    font-weight: 600;
-    transition: 0.4s;
-  }
-
-  .btn-outline:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: #f7c934;
-    color: #f7c934;
-  }
-
   /* Keyframes */
   @keyframes float {
     0%,
