@@ -1,3 +1,18 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: #0b0f1a;
+  color: #fff;
+  line-height: 1.6;
+}
 .hero {
   width: 100%;
   height: 100vh;
@@ -464,14 +479,17 @@ html {
 
 .blog-img {
   position: relative;
-  height: 220px;
+  width: 100%; /* ធានាថា Container រូបភាពរីកពេញ Card */
+  height: 220px; /* កម្ពស់រូបភាពថេរ */
   overflow: hidden;
+  display: block; /* លុបចន្លោះសងខាងដែលមិនចាំបាច់ */
 }
 
 .blog-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 100% !important; /* បង្ខំឱ្យរូបភាពរីកពេញទទឹង Card */
+  height: 100% !important; /* បង្ខំឱ្យរូបភាពរីកពេញកម្ពស់ដែលបានកំណត់ */
+  object-fit: cover; /* សំខាន់បំផុត៖ ការពាររូបភាពកុំឱ្យហាប់ ឬយារ */
+  display: block;
   transition: 0.5s ease;
 }
 
@@ -552,10 +570,26 @@ html {
 /* Responsive Grid Fix */
 @media (max-width: 480px) {
   .blog-grid {
-    grid-template-columns: 1fr;
+    display: grid;
+    grid-template-columns: 1fr; 
+    width: 100%;
+    gap: 20px;
+  }
+
+  .blog-card {
+    width: 100%; 
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .blog-img {
+    height: 200px; 
     width: 350px;
+    margin-left: -15px;
+
   }
 }
+
 @media (max-width: 480px) {
   .hero {
     height: auto;
