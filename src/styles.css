@@ -1,34 +1,95 @@
-body,
-html {
-  font-family: 'Roboto', sans-serif;
+/* ---------------------------------------
+   1. GLOBAL RESET & BOX MODEL
+   Ensures padding/border doesn't add to width
+   --------------------------------------- */
+*,
+::before,
+::after {
   margin: 0;
   padding: 0;
-  border: 0;
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  background: #fff; /* optional: default background */
+  box-sizing: border-box; /* This is the most important fix */
 }
-body {
-  margin: 0;
-  padding: 0;
 
-  overflow-x: hidden; /* ការពារកុំឱ្យមាន Scrollbar ទៅឆ្វេងស្តាំ */
+html,
+body {
+  font-family: 'Roboto', sans-serif;
+  width: 100%;
+  max-width: 100vw; /* Strict viewport constraint */
+  height: 100%;
+  overflow-x: hidden; /* Prevents the right-side swipe/scroll */
+  background: #fff;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%; /* Prevents text zooming on orientation change */
 }
-/* លាក់ Scrollbar លើ Body */
+
+/* Hide scrollbar for Chrome/Safari */
 body::-webkit-scrollbar {
   display: none;
 }
 
-/* Optional: remove list bullets from ul */
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+/* ---------------------------------------
+   2. RESPONSIVE ELEMENTS
+   Ensures media content stays inside the screen
+   --------------------------------------- */
+img,
+video,
+canvas,
+iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
-/* Optional: remove link underline globally */
+ul {
+  list-style: none;
+}
+
 a {
   text-decoration: none;
   color: inherit;
+}
+
+/* ---------------------------------------
+   3. RESPONSIVE UTILITIES (Mobile First)
+   Use these classes to control layout behavior
+   --------------------------------------- */
+
+/* Container to keep content centered and safe from edges */
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Extra Small Devices (Phones) */
+@media (max-width: 576px) {
+  .container {
+    max-width: 100%;
+  }
+
+  /* Prevent long words or URLs from breaking the layout */
+  p,
+  h1,
+  h2,
+  h3,
+  span {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+}
+
+/* Medium Devices (Tablets) */
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+/* Large Devices (Desktop) */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
 }

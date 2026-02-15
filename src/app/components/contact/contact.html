@@ -1,6 +1,6 @@
 <!-- Contact Section -->
 <div class="contact-container">
-  <h2>Get in Touch</h2>
+  <h2>Get in Touch (ទំនាក់ទំនង)</h2>
   <!-- Company Info + Map (Left - Right) -->
   <div class="contact-info-map">
     <div class="company-info">
@@ -26,44 +26,44 @@
     </div>
   </div>
   <div *ngIf="successMessage" class="success-alert">
-    ✅ Thanks for reaching out! Your message has been sent.
+    ✅ សូមអរគុណសម្រាប់ការទាក់ទងមកកាន់យើងខ្ញុំ! សាររបស់អ្នកត្រូវបានផ្ញើជូនរួចរាល់ហើយ។
   </div>
   <!-- Contact Form -->
   <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
     <div class="form-group">
-      <label>Name</label>
+      <label>Name (ឈ្មោះ)</label>
       <input formControlName="name" placeholder="Your name" />
       <small
         *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched"
         class="error"
       >
-        Name is required (min 3 chars).
+        សូមបញ្ចូលឈ្មោះ យ៉ាងហោចណាស់ឲ្យបាន ៣ តួអក្សរ។
       </small>
     </div>
     <div class="form-group">
-      <label>Phone Number</label>
+      <label>Phone Number (លេខទូរសព្ទ)</label>
       <input type="tel" formControlName="phone" placeholder="Your phone number" />
       <small
         *ngIf="contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched"
         class="error"
       >
-        Phone number must contain numbers only and be exactly 9 digits.
+        លេខទូរសព្ទត្រូវមានតែលេខប៉ុណ្ណោះ និងមានចំនួនយ៉ាងតិច ៩ ខ្ទង់។
       </small>
     </div>
 
     <div class="form-group">
-      <label>Email</label>
+      <label>Email (អ៊ីមែល)</label>
       <input type="email" formControlName="email" placeholder="Email address" />
       <small
         *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched"
         class="error"
       >
-        Please enter a valid email.
+        សូមបញ្ចូលអាសយដ្ឋានអ៊ីមែល ដែលមានសុពលភាព។
       </small>
     </div>
 
     <div class="form-group">
-      <label>Message</label>
+      <label>Message (សារ)</label>
       <textarea formControlName="message" rows="5" placeholder="Your message"></textarea>
     </div>
 

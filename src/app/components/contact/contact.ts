@@ -17,13 +17,7 @@ export class Contact {
     this.contactForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
-      phone: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern(/^[0-9]{9,}$/), 
-        ],
-      ],
+      phone: ['', [Validators.required, Validators.pattern(/^[0-9]{9,}$/)]],
 
       message: ['', [Validators.required, Validators.maxLength(500)]],
     });
@@ -33,14 +27,45 @@ export class Contact {
 
   onSubmit() {
     if (this.contactForm.valid) {
-      console.log('Form Data:', this.contactForm.value);
+      const botToken = '8347289983:AAEj6d664dpnYUuG1sfsVfXNlYayJU-rs7U';
+      const chatId = '-1003811778242';
 
-      this.successMessage = true; // show message
-      this.contactForm.reset();
+      const formData = this.contactForm.value;
 
-      setTimeout(() => {
-        this.successMessage = false; // auto hide after 3s
-      }, 3000);
+      const message = `
+        📩 New Contact Form Submission
+
+        👤 Name: ${formData.name}
+        📧 Email: ${formData.email}
+        📱 Phone: ${formData.phone}
+        📝 Message: ${formData.message}
+        `;
+
+      const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: message,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Telegram response:', data);
+          this.successMessage = true;
+          this.contactForm.reset();
+
+          setTimeout(() => {
+            this.successMessage = false;
+          }, 3000);
+        })
+        .catch((error) => {
+          console.error('Error sending to Telegram:', error);
+        });
     }
   }
 }
