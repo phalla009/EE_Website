@@ -3,10 +3,8 @@ import { Home } from './components/home/home';
 import { ProductListComponent } from './components/product-list/product-list';
 import { About } from './components/about/about';
 import { Contact } from './components/contact/contact';
-import { Hero } from './components/hero/hero';
 
 export const routes: Routes = [
-  // { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '', component: Home },
   { path: 'home', component: Home },
   { path: 'product', component: ProductListComponent },

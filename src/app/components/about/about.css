@@ -10,9 +10,10 @@
   margin-bottom: 50px;
 }
 
-.hero h1 {
-  font-size: 3rem;
+.hero h2 {
+  font-size: 2rem;
   color: #f7c934;
+  margin-bottom: 20px;
 }
 
 .hero p {
@@ -23,12 +24,6 @@
 .mission {
   text-align: center;
   margin-bottom: 50px;
-}
-
-.mission h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #f7c934;
 }
 
 .mission p {
@@ -52,19 +47,15 @@
   min-width: 300px; /* Prevents shrinking too small */
 }
 
-.hero h1 {
-  font-size: 3rem;
-  color: #f7c934;
-}
-
 .hero p {
   font-size: 1.2rem;
   color: #333;
 }
 
 .mission h2 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: #f7c934;
+  margin-bottom: 20px;
 }
 
 .mission p {
@@ -102,7 +93,7 @@
 
 .card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 15px #f7ca3458;
 }
 
 .card img {
@@ -111,7 +102,9 @@
   border-radius: 50%;
   margin-bottom: 15px;
 }
-
+.img-container {
+  margin-left: 30px;
+}
 .card h3 {
   font-size: 1.2rem;
   margin-bottom: 5px;
@@ -121,4 +114,32 @@
 .card p {
   font-size: 1rem;
   color: #555;
+}
+@media (max-width: 768px) {
+  .hero h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+  }
+  .mission h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+  .team h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h2 {
+    font-size: 1.5rem;
+  }
+  .mission h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+  .team h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
 }
