@@ -566,12 +566,49 @@
   color: #2c3e50;
 }
 
+/* ប្តូរ grid ទៅជា flex ដើម្បីឱ្យវាដេកជួរដេក */
 .blog-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  display: flex; /* ប្តូរពី grid ទៅ flex */
+  overflow-x: auto; /* អនុញ្ញាតឱ្យ scroll តាមដេក */
   gap: 25px;
+  padding: 20px 5px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch; /* សម្រាប់ mobile scroll រលូន */
 }
 
+/* លាក់ Scrollbar ដើម្បីឱ្យមើលទៅស្អាត (Optional) */
+.blog-grid::-webkit-scrollbar {
+  height: 6px;
+}
+
+.blog-grid::-webkit-scrollbar-thumb {
+  background: #f7c934;
+  border-radius: 10px;
+}
+
+.blog-grid::-webkit-scrollbar-track {
+  background: #eee;
+}
+
+/* កំណត់ទំហំ Card នីមួយៗឱ្យថេរ កុំឱ្យវារួមតូច (No Shrink) */
+.blog-card {
+  min-width: 300px; /* កំណត់ទំហំទទឹង Card */
+  max-width: 300px;
+  flex: 0 0 auto; /* ការពារកុំឱ្យ Card រួមតូចនៅពេលមាន items ច្រើន */
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #eee;
+  transition: 0.3s;
+}
+
+/* បន្ថែម margin ខាងក្រោម section ដើម្បីកុំឱ្យជាប់គ្នាពេក */
+.blog-section {
+  max-width: 1300px;
+  margin: 40px auto;
+  padding: 0 20px;
+  overflow: hidden; /* ការពារកុំឱ្យធ្លាយ layout មេ */
+}
 .blog-card {
   background: #fff;
   border-radius: 12px;

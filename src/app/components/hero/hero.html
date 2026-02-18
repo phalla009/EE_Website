@@ -1,35 +1,31 @@
 <section class="hero">
   <div class="hero-content">
     <h1 class="fade-up">ProPower Cambodia</h1>
-    <h2>ដំណោះស្រាយគ្រឿងអគ្គិសនីដ៏មានទំនុកចិត្តរបស់អ្នក</h2>
+    <h2 class="fade-up">ដំណោះស្រាយគ្រឿងអគ្គិសនីដ៏មានទំនុកចិត្តរបស់អ្នក</h2>
     <br />
     <p class="fade-up delay-1">
       ស្វាគមន៍មកកាន់ ProPower Cambodia! យើងគឺជាអ្នកជំនាញចែកចាយ
       និងផ្គត់ផ្គង់ឧបករណ៍អគ្គិសនីគ្រប់ប្រភេទ ដែលមានគុណភាពខ្ពស់
-      និងសុវត្ថិភាពបំផុតនៅក្នុងប្រទេសកម្ពុជា។ មិនថាសម្រាប់លំនៅឋាន បុរី ខុនដូ ឬគម្រោងសាងសង់អាគារធំៗ
-      យើងមានផលិតផលដែលឆ្លើយតបគ្រប់តម្រូវការរបស់លោកអ្នក។
+      និងសុវត្ថិភាពបំផុតនៅក្នុងប្រទេសកម្ពុជា។
     </p>
-    <div class="service-container">
+
+    <div class="service-container fade-up delay-1">
       <div class="service-item">
         <i class="fa-solid fa-award"></i>
         <h2>គុណភាពស្តង់ដារ</h2>
       </div>
-
       <div class="service-item">
         <i class="fa-solid fa-shield-halved"></i>
         <h2>សុវត្ថិភាពជាចម្បង</h2>
       </div>
-
       <div class="service-item">
         <i class="fa-solid fa-tags"></i>
         <h2>តម្លៃសមរម្យ</h2>
       </div>
-
       <div class="service-item">
         <i class="fa-solid fa-bolt"></i>
         <h2>សេវាកម្មរហ័ស</h2>
       </div>
-
       <div class="service-item">
         <i class="fa-solid fa-handshake"></i>
         <h2>ទំនុកចិត្តខ្ពស់</h2>
@@ -45,99 +41,34 @@
     </div>
   </div>
 </section>
-<button class="back-to-top" [class.show]="isShow" (click)="scrollToTop()">
-  <i class="fa-solid fa-angles-up"></i>
-</button>
 
 <section class="blog-section">
   <div class="container">
     <div class="section-header fade-up">
-      <span class="subtitle">Latest Updates</span>
-      <h2>Our Insights & Blog</h2>
-      <p>Stay ahead with the latest trends in technology and business growth.</p>
+      <span class="subtitle">{{ blogData.header.tagline }}</span>
+      <h2>{{ blogData.header.title }}</h2>
+      <p>{{ blogData.header.desc }}</p>
     </div>
 
     <div class="blog-grid">
-      <article class="blog-card fade-up delay-1">
+      <article class="blog-card fade-up delay-1" *ngFor="let post of blogData.articles">
         <div class="blog-img">
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-jXEMI3yFxscehplsRaWO9UC9bQPIiVv4pFZEM4hyif7InxoWSmRaTfYA3ybu"
-            alt="Tech Trends"
-          />
-          <span class="category">Technology</span>
+          <img [src]="post.img" [alt]="post.title" />
+          <span class="category">{{ post.category }}</span>
         </div>
         <div class="blog-info">
-          <span class="date">Feb 14, 2026</span>
-          <h3>Industrial Exhaust Fan(កង្ហារបឺតខ្យល់ឧស្សាហកម្ម - សម្រាប់រោងចក្រ)</h3>
-          <p [class.show-all]="expandedCards['fan']">
-            បង្កើនប្រសិទ្ធភាពការងារ និងសុវត្ថិភាពក្នុងបរិវេណរោងចក្រ
-            ឬឃ្លាំងទំនិញរបស់អ្នកជាមួយកង្ហារបឺតខ្យល់កម្រិតខ្ពស់។
-            ឧបករណ៍នេះត្រូវបានរចនាឡើងយ៉ាងពិសេសដើម្បីបឺតកម្ដៅ ផ្សែង ធូលី និងក្លិនមិនល្អ ចេញពីក្នុងអគារ
-            ជួយឱ្យខ្យល់អាកាសបរិសុទ្ធ និងត្រជាក់ជាងមុន។ វាត្រូវបានផលិតចេញពីលោហៈធាតុធន់នឹងការច្រេះ
-            និងបំពាក់ដោយម៉ូទ័រដែលមានកម្លាំងខ្លាំង ប៉ុន្តែស៊ីភ្លើងតិច
-            ស័ក្តិសមបំផុតសម្រាប់ការប្រើប្រាស់ក្នុងលក្ខណៈឧស្សាហកម្មធុនធ្ងន់។
-          </p>
-          <a href="javascript:void(0)" class="read-more" (click)="toggleReadMore('fan')">
-            {{ expandedCards['fan'] ? 'Show Less' : 'Read More' }}
-            <i
-              class="fa-solid"
-              [ngClass]="expandedCards['fan'] ? 'fa-angles-up' : 'fa-arrow-right'"
-            ></i>
-          </a>
-        </div>
-      </article>
+          <span class="date">{{ post.date }}</span>
+          <h3>{{ post.title }}</h3>
 
-      <article class="blog-card fade-up delay-2">
-        <div class="blog-img">
-          <img
-            src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcS6CKnPdoOolJtyvdaT2sWk5Ot32A7ybIryukaJNKEv_VUhKHLt5Vrsfe2EZar2"
-            alt="Cloud Solutions"
-          />
-          <span class="category">Technology</span>
-        </div>
-        <div class="blog-info">
-          <span class="date">Feb 14, 2026</span>
-          <h3>Magnetic Starter (ឧបករណ៍បញ្ជាម៉ូទ័រអគ្គិសនី)</h3>
-          <p [class.show-all]="expandedCards['starter']">
-            ការពារ និងគ្រប់គ្រងម៉ូទ័រអគ្គិសនីរបស់អ្នកឱ្យមានសុវត្ថិភាពបំផុតជាមួយ Magnetic Starter។
-            ឧបករណ៍នេះដើរតួនាទីយ៉ាងសំខាន់ក្នុងការបញ្ជាបិទ-បើកម៉ូទ័រពីចម្ងាយ
-            និងផ្តល់ការការពារដោយស្វ័យប្រវត្តិ (Overload Protection) នៅពេលមានចរន្តលើស
-            ដែលការពារមិនឱ្យម៉ូទ័រឆេះ ឬខូចខាត។ វាជាដំណោះស្រាយដ៏ល្អឥតខ្ចោះសម្រាប់ម៉ាស៊ីនផលិតកម្ម
-            និងប្រព័ន្ធបូមទឹកខ្នាតធំដែលត្រូវការភាពជឿជាក់ខ្ពស់។
+          <p [class.show-all]="expandedCards[post.id]">
+            {{ expandedCards[post.id] ? post.fullDesc : post.shortDesc }}
           </p>
-          <a href="javascript:void(0)" class="read-more" (click)="toggleReadMore('starter')">
-            {{ expandedCards['starter'] ? 'Show Less' : 'Read More' }}
-            <i
-              class="fa-solid"
-              [ngClass]="expandedCards['starter'] ? 'fa-angles-up' : 'fa-arrow-right'"
-            ></i>
-          </a>
-        </div>
-      </article>
 
-      <article class="blog-card fade-up delay-1">
-        <div class="blog-img">
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgKa6O0t7R0Xal8REc7gwsDe79Fz5YSG8tHYjst0dSO1YAWCkxFaIdxlE62fDT"
-            alt="Software Dev"
-          />
-          <span class="category">Technology</span>
-        </div>
-        <div class="blog-info">
-          <span class="date">Feb 14, 2026</span>
-          <h3>Multi-functional Clamp Meter (អំពែម៉ែត្រសម្រាប់វាស់ចរន្តអគ្គិសនី)</h3>
-          <p [class.show-all]="expandedCards['meter']">
-            ជាឧបករណ៍ដែលមិនអាចខ្វះបានសម្រាប់ជាងអគ្គិសនីអាជីព។ Clamp Meter
-            នេះអនុញ្ញាតឱ្យអ្នកវាស់ចរន្តអគ្គិសនី (Amperage) បានយ៉ាងរហ័ស និងមានសុវត្ថិភាពបំផុត
-            ដោយមិនចាំបាច់កាត់ខ្សែភ្លើង ឬប៉ះពាល់ផ្ទាល់ជាមួយចរន្តឡើយ (Non-contact measurement)។
-            ក្រៅពីវាស់ចរន្ត វាក៏អាចវាស់តង់ស្យុង (Voltage) កម្រិតរ៉េស៊ីស្តង់ (Resistance)
-            និងការតភ្ជាប់សៀគ្វីបានយ៉ាងត្រឹមត្រូវតាមស្តង់ដារបច្ចេកទេស។
-          </p>
-          <a href="javascript:void(0)" class="read-more" (click)="toggleReadMore('meter')">
-            {{ expandedCards['meter'] ? 'Show Less' : 'Read More' }}
+          <a href="javascript:void(0)" class="read-more" (click)="toggleReadMore(post.id)">
+            {{ expandedCards[post.id] ? 'Show Less' : 'Read More' }}
             <i
               class="fa-solid"
-              [ngClass]="expandedCards['meter'] ? 'fa-angles-up' : 'fa-arrow-right'"
+              [ngClass]="expandedCards[post.id] ? 'fa-angles-up' : 'fa-arrow-right'"
             ></i>
           </a>
         </div>
@@ -145,3 +76,7 @@
     </div>
   </div>
 </section>
+
+<button class="back-to-top" [class.show]="isShow" (click)="scrollToTop()">
+  <i class="fa-solid fa-angles-up"></i>
+</button>
