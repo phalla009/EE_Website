@@ -1,7 +1,8 @@
 import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Contact } from '../contact/contact';
-import { ProductListComponent } from "../product-list/product-list"; // សំខាន់សម្រាប់ប្រើ [class.show]
+import { ProductListComponent } from '../product-list/product-list';
+
 
 @Component({
   selector: 'app-hero',
@@ -55,14 +56,13 @@ export class Hero {
   toggleReadMore(cardId: string) {
     this.expandedCards[cardId] = !this.expandedCards[cardId];
   }
-  // តាមដានការ Scroll របស់ Browser
+
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    // បើ scroll ចុះក្រោមលើសពី 400px ឱ្យ isShow = true
+
     this.isShow = window.scrollY > 400;
   }
 
-  // Function សម្រាប់ Scroll ទៅលើវិញ
   scrollToTop() {
     window.scrollTo({
       top: 0,
