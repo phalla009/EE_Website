@@ -117,6 +117,13 @@ body {
     padding: 20px 30px;
   }
 }
+@media (min-width: 480px) {
+  .service-item {
+    flex: 0 0 auto;
+    font-size: 18px;
+    padding: 20px 30px;
+  }
+}
 
 @media (max-width: 360px) {
   .service-item {
