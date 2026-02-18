@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { Footer } from '../footer/footer';
 import { ActivatedRoute } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [CommonModule, Footer],
+  imports: [CommonModule, Footer, FormsModule],
   templateUrl: './product-list.html',
   styleUrls: ['./product-list.css'],
 })
@@ -432,5 +433,133 @@ export class ProductListComponent {
       top: 0,
       behavior: 'smooth',
     });
+  }
+  // sendToTelegram(product: any) {
+  //   // ១. ព័ត៌មាន Bot របស់អ្នក
+  //   const botToken = '8347289983:AAEj6d664dpnYUuG1sfsVfXNlYayJU-rs7U';
+  //   const chatId = '-1003811778242';
+  //   // ២. រៀបចំសារជាទម្រង់អត្ថបទ (Markdown)
+  //   const imageUrl = this.selectedImg || product.image[0];
+  //   const message =
+  //     `<b>🛍️ ការសាកសួរថ្មីពីអតិថិជន</b>\n\n` +
+  //     `<b>ឈ្មោះផលិតផល:</b> ${product.name}\n` +
+  //     `<b>ប្រភេទ:</b> ${product.category}\n` +
+  //     `<b>លក្ខណៈបច្ចេកទេស:</b> ${product.specs}\n\n` +
+  //     `🔗 <a href="${imageUrl}">ចុចទីនេះដើម្បីមើលរូបភាពផលិតផល</a>`;
+
+  //   // ៣. ហៅទៅកាន់ Telegram Bot API (sendMessage)
+  //   const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+
+  //   const payload = {
+  //     chat_id: chatId,
+  //     text: message,
+  //     parse_mode: 'HTML', // ប្រើ HTML ដើម្បីឱ្យ Link និងអក្សរដិតដំណើរការ
+  //   };
+
+  //   // ប្រើ fetch ដើម្បីផ្ញើទិន្នន័យទៅ Bot
+  //   fetch(url, {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify(payload),
+  //   })
+  //     .then((response) => {
+  //       if (response.ok) {
+  //         alert('សារត្រូវបានផ្ញើទៅកាន់អ្នកលក់រួចរាល់!');
+  //       } else {
+  //         alert('មានបញ្ហាក្នុងការផ្ញើសារ!');
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error:', error);
+  //       alert('មិនអាចភ្ជាប់ទៅកាន់ Telegram បានទេ');
+  //     });
+  // }
+  customerName: string = '';
+  customerPhone: string = '';
+  customerNote: string = '';
+  formSubmitted: boolean = false;
+  isSending: boolean = false;
+
+  // បន្ថែម Variable ទាំងនេះក្នុង class ProductListComponent
+  statusMessage: string | null = null;
+  statusType: 'success' | 'error' | null = null;
+
+  // បង្កើត Function សម្រាប់បង្ហាញសារ
+  private showStatus(msg: string, type: 'success' | 'error') {
+    this.statusMessage = msg;
+    this.statusType = type;
+    setTimeout(() => {
+      this.statusMessage = null;
+      this.statusType = null;
+    }, 3000);
+  }
+
+  sendToTelegram(product: any) {
+    this.formSubmitted = true;
+
+    if (!this.customerName.trim() || !this.customerPhone.trim()) {
+      return;
+    }
+
+    this.isSending = true;
+
+    const botToken = '8347289983:AAEj6d664dpnYUuG1sfsVfXNlYayJU-rs7U';
+    const chatId = '-1003811778242';
+    const imageUrl = this.selectedImg || product.image[0];
+
+    const message = `
+      <b>🚀 ការសាកសួរផលិតផលថ្មី</b>
+      ━━━━━━━━━━━━━━━━━━
+      <b>👤 ព័ត៌មានអតិថិជន</b>
+      <b>• ឈ្មោះ:</b> ${this.customerName}
+      <b>• លេខទូរស័ព្ទ:</b> <code>${this.customerPhone}</code>
+      <b>• ចំណាំ:</b> <i>${this.customerNote || 'មិនមាន'}</i>
+
+      <b>📦 ព័ត៌មានផលិតផល</b>
+      <b>• ឈ្មោះ:</b> ${product.name}
+      <b>• ប្រភេទ:</b> ${product.category}
+      <b>• លក្ខណៈ:</b> <code>${product.specs}</code>
+
+      🔗 <a href="${imageUrl}">ចុចទីនេះដើម្បីមើលរូបភាព</a>
+      ━━━━━━━━━━━━━━━━━━
+      🕒 <i>ម៉ោងផ្ញើ: ${new Date().toLocaleString('km-KH')}</i>
+        `;
+
+    fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: message,
+        parse_mode: 'HTML',
+        disable_web_page_preview: false,
+      }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          this.showStatus(
+            'បញ្ជូនទិន្នន័យជោគជ័យ! ផ្នែកលក់នឹងទាក់ទងទៅលោកអ្នកក្នុងពេលឆាប់ៗ។',
+            'success',
+          );
+          this.resetForm();
+          setTimeout(() => this.closeModal(), 2000);
+        } else {
+          this.showStatus('បរាជ័យ! សូមព្យាយាមម្តងទៀត ឬទាក់ទងមកយើងផ្ទាល់។', 'error');
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        this.showStatus('មិនអាចភ្ជាប់ទៅកាន់ Telegram បានទេ', 'error');
+      })
+      .finally(() => {
+        this.isSending = false;
+      });
+  }
+
+  resetForm() {
+    this.customerName = '';
+    this.customerPhone = '';
+    this.customerNote = '';
+    this.formSubmitted = false;
   }
 }

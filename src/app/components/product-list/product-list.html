@@ -81,6 +81,16 @@
 <button class="back-to-top" [class.show]="isShow" (click)="scrollToTop()">
   <i class="fa-solid fa-angles-up"></i>
 </button>
+@if (statusMessage) {
+  <div class="status-toast" [ngClass]="statusType">
+    <i
+      [class]="
+        statusType === 'success' ? 'fa-solid fa-circle-check' : 'fa-solid fa-triangle-exclamation'
+      "
+    ></i>
+    <span>{{ statusMessage }}</span>
+  </div>
+}
 @if (selectedProduct(); as product) {
   <div class="modal-overlay" (click)="closeModal()">
     <div class="modal-container" (click)="$event.stopPropagation()">
@@ -124,7 +134,59 @@
             </p>
           </div>
 
-          <button class="inquiry-btn">Send to Seller</button>
+          <div class="modal-section customer-form">
+            <h4 class="form-title">
+              <i class="fa-solid fa-address-card"></i> ព័ត៌មានទំនាក់ទំនងផ្នែកលក់
+            </h4>
+
+            <div class="input-group">
+              <input
+                type="text"
+                [(ngModel)]="customerName"
+                class="form-input"
+                [class.input-error]="formSubmitted && !customerName.trim()"
+                placeholder="ឈ្មោះរបស់អ្នក..."
+              />
+            </div>
+            @if (formSubmitted && !customerName.trim()) {
+              <span class="error-text">សូមបញ្ចូលឈ្មោះរបស់អ្នក!</span>
+            }
+
+            <div class="input-group">
+              
+              <input
+                type="text"
+                [(ngModel)]="customerPhone"
+                class="form-input"
+                [class.input-error]="formSubmitted && !customerPhone.trim()"
+                placeholder="លេខទូរស័ព្ទ..."
+              />
+            </div>
+            @if (formSubmitted && !customerPhone.trim()) {
+              <span class="error-text">សូមបញ្ចូលលេខទូរស័ព្ទ!</span>
+            }
+
+            <div class="input-group">
+              
+              <textarea
+                [(ngModel)]="customerNote"
+                class="form-input form-textarea"
+                placeholder="សារបន្ថែម (Optional)..."
+              ></textarea>
+            </div>
+          </div>
+
+          <button
+            class="inquiry-btn"
+            (click)="sendToTelegram(selectedProduct())"
+            [disabled]="isSending"
+          >
+            @if (isSending) {
+              <i class="fa-solid fa-circle-notch fa-spin"></i> កំពុងផ្ញើ...
+            } @else {
+              <i class="fa-solid fa-paper-plane"></i> ផ្ញើជូនផ្នែកលក់
+            }
+          </button>
         </div>
       </div>
     </div>

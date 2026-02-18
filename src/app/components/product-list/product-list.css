@@ -804,3 +804,199 @@ button,
 .modal-img:hover {
   transform: scale(1.1);
 }
+/* Container សម្រាប់ខ្ចប់ Form ទាំងមូល */
+.customer-form {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.customer-form h4 {
+  font-family: 'Courier New', Courier, monospace, 'Kantumruy Pro', sans-serif;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+  color: #2c3e50;
+  font-weight: 600;
+  border-bottom: 2px solid #f7c934;
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+.form-input {
+  font-family: 'Courier New', Courier, monospace, 'Kantumruy Pro', sans-serif;
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 12px;
+  border: 1px solid #ced4da;
+  border-radius: 24px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  outline: none;
+}
+.form-textarea {
+  border-radius: 12px;
+}
+.form-input:focus {
+  border-color: #f7c934;
+  background-color: #ffffff;
+}
+
+/* ស្ទីលពិសេសសម្រាប់ Textarea */
+.form-textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.inquiry-btn {
+  font-family: 'Courier New', Courier, monospace, 'Kantumruy Pro', sans-serif;
+  width: 100%;
+  background: #f7c934;
+  padding: 14px;
+  border: none;
+  color: #000;
+  border-radius: 24px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    background 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.inquiry-btn:hover {
+  background-color: #ffdf76;
+  transform: translateY(-2px);
+}
+
+.inquiry-btn:active {
+  transform: translateY(0);
+}
+
+::placeholder {
+  color: #adb5bd;
+  opacity: 1;
+}
+/* អក្សរ Error */
+.error-text {
+  color: #e74c3c;
+  font-size: 12px;
+  display: block;
+  margin-top: -8px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  font-family: 'Kantumruy Pro', sans-serif;
+}
+
+/* គែមប្រអប់ពេលមាន Error */
+.input-error {
+  border-color: #e74c3c !important;
+  background-color: #fff8f8;
+}
+
+/* បន្ថែម Animation បន្តិចឱ្យញ័រពេល Error (Optional) */
+.input-error {
+  animation: shake 0.2s ease-in-out;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+/* --- កូដសម្រាប់ Desktop (មានស្រាប់) --- */
+.status-toast {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 25px;
+  border-radius: 24px;
+  color: white;
+  font-family: 'Kantumruy Pro', sans-serif;
+  font-size: 14px;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap; /* ការពារកុំឱ្យដាច់បន្ទាត់អក្សរលើ Desktop */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  animation: slideDownFade 0.4s ease-out;
+}
+
+/* --- Responsive សម្រាប់ទូរស័ព្ទ (Mobile) --- */
+@media (max-width: 576px) {
+  .status-toast {
+    top: auto; /* លុប Top ចេញ */
+    bottom: 30px; /* ដាក់ឱ្យនៅខាងក្រោមវិញ ដើម្បីងាយស្រួលមើលលើទូរស័ព្ទ */
+    width: 90%; /* ឱ្យវាមានទទឹង 90% នៃអេក្រង់ */
+    max-width: 350px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: normal; /* ឱ្យអក្សរធ្លាក់បន្ទាត់បើវែងពេក */
+    text-align: center;
+    justify-content: center;
+    padding: 15px 20px;
+    font-size: 13px; /* បន្ថយទំហំអក្សរបន្តិច */
+    animation: slideUpFade 0.4s ease-out; /* ប្តូរ Animation ឱ្យអណ្តែតឡើងលើវិញ */
+  }
+}
+
+/* Animation សម្រាប់ Desktop (ចុះក្រោម) */
+@keyframes slideDownFade {
+  from {
+    top: -50px;
+    opacity: 0;
+  }
+  to {
+    top: 20px;
+    opacity: 1;
+  }
+}
+
+/* Animation សម្រាប់ Mobile (ឡើងលើ) */
+@keyframes slideUpFade {
+  from {
+    bottom: -50px;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+.status-toast.success {
+  background: green;
+  border-bottom: 3px solid #1e8449;
+}
+
+.status-toast.error {
+  background: #c0392b;
+  border-bottom: 3px solid #922b21;
+}
+
+@keyframes slideDownFade {
+  from {
+    top: -60px;
+    opacity: 0;
+  }
+  to {
+    top: 20px;
+    opacity: 1;
+  }
+}
