@@ -52,6 +52,7 @@ export class Hero {
       },
     ],
   };
+  
   expandedCards: { [key: string]: boolean } = {};
   toggleReadMore(cardId: string) {
     this.expandedCards[cardId] = !this.expandedCards[cardId];

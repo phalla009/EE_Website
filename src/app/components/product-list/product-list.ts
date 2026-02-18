@@ -1,4 +1,4 @@
-import { Component, signal, computed, inject } from '@angular/core';
+import { Component, signal, computed, inject, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Footer } from '../footer/footer';
 import { ActivatedRoute } from '@angular/router';
@@ -14,11 +14,12 @@ import { toSignal } from '@angular/core/rxjs-interop';
 export class ProductListComponent {
   expandedCards: { [key: string]: boolean } = {};
 
-  toggleReadMore(key: string) {
+  toggleReadMore(key: string | number) {
     this.expandedCards[key] = !this.expandedCards[key];
   }
   private route = inject(ActivatedRoute);
   private routeParams = toSignal(this.route.params);
+  isShow: boolean = false;
   products = signal([
     {
       id: 1,
@@ -180,7 +181,153 @@ export class ProductListComponent {
         'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSF7_HLvzEuD7g-qbjvIrXXr5ET-8IburtZcNjhnQNpIbm6-N3UKEU7hEox4nLt',
       specs: 'Power: 50W, Voltage: 220V, Waterproof IP65, Aluminum Body.',
     },
+    {
+      id: 21,
+      name: 'Magnetic Starter',
+      category: 'Electrical Control',
+      image:
+        'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRyBle2s0aqApgeMKQh7p7psp4UWi-zHwxfsGNBN3oEsOZxL-7MAd53OJvqGOyM',
+      specs: 'Power: 7.5kW, Voltage: 380V, 3-Phase, Thermal Overload Protection.',
+    },
+    {
+      id: 22,
+      name: 'Current Transformer (CT)',
+      category: 'Measurement',
+      image:
+        'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQWeed1jLX9GzlN3NuCUWARKL2RHELR80C5t95hrGqatfVb5m3YAue0RA6oHAYY',
+      specs: 'Ratio: 100/5A, Accuracy Class: 0.5, Rated Voltage: 0.66kV.',
+    },
+    {
+      id: 23,
+      name: 'Power Factor Controller',
+      category: 'Automation',
+      image:
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREexV8lLdtqVzIInmn13GNi2tX8UNae2fXERnEARV0fbnvZKKvpB0lshyJm84Q',
+      specs: 'Steps: 12-Step, LED Display, Automatic Capacitor Bank Control.',
+    },
+    {
+      id: 24,
+      name: 'Capacitor Bank 25kVAR',
+      category: 'Power Supply',
+      image:
+        'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQZ86j_INuOlI2Vc8PE54Sdlqf6UH99vJd2W4NCJW6qDfMKMgcKCOLv0We2GpzA',
+      specs: 'Capacity: 25kVAR, Voltage: 440V, Frequency: 50Hz, Heavy Duty.',
+    },
+    {
+      id: 25,
+      name: 'Float Switch Pro',
+      category: 'Protection Device',
+      image:
+        'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRLmqOsT3__0VZkmlD-4A9bftevci7e1J12_GkOF5Gvbz442BoHOEHi1easd9iN',
+      specs: 'Cable Length: 5m, Material: PP, Rated Current: 10A, Waterproof.',
+    },
+    {
+      id: 26,
+      name: 'Distribution Transformer 160kVA',
+      category: 'Power Supply',
+      image:
+        'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQYTu3UiZJS8G_agaWh-US1Gihg8u8HPLfurYFwB8eoCLxNh0xegeo--AinZiLM',
+      specs: '160kVA, 22kV/400V, Oil-Immersed, Copper Winding.',
+    },
+    {
+      id: 27,
+      name: 'Busbar Insulator',
+      category: 'Wiring Access',
+      image:
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXZJuyZENym4BEYj4IGTk2C22uNAkgVSofAEkMPsxfbEyDMBkA5EI42Rz7RYhl',
+      specs: 'Material: BMC, Voltage: 600V, Height: 40mm, M8 Thread.',
+    },
+    {
+      id: 28,
+      name: 'Star-Delta Starter Panel',
+      category: 'Electrical Control',
+      image:
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRT5KdD4Fchsd60I0zP6DUltA3dSFLL1fA5uGkAErqxMmrD3ZNNxT57P1IVx6cv',
+      specs: 'Power: 22kW, Component: Schneider, IP54 Metal Enclosure.',
+    },
+    {
+      id: 29,
+      name: 'Grounding Rod 5/8"',
+      category: 'Protection Device',
+      image:
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_IaL_xGOjNwRIKPFavRy0aXwzc2hDWFAXC7NM_O5ETMEGQylu0YrCaztjOkE7',
+      specs: 'Material: Copper Bonded, Length: 2.4m, Diameter: 16mm.',
+    },
+    {
+      id: 30,
+      name: 'Digital Timer Switch',
+      category: 'Automation',
+      image:
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQerB-Anu_gTyUl5tR6CFB-P-NigBn9aI-E63HIu6oYI-51gNLT6vvatooEsOwP',
+      specs: 'Voltage: 220V, Programming: 16 On/Off, Battery Backup.',
+    },
+    {
+      id: 31,
+      name: 'Limit Switch Box',
+      category: 'Automation',
+      image:
+        'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcS2sRfdhWTH7jAZIu5JpqgnAlY45gno6DWe9yH6D_0Gn8m62sPmyHpoqgmu6faE',
+      specs: 'Protection: IP67, Contacts: 2xSPDT, Mechanical Position Sensing.',
+    },
+    {
+      id: 32,
+      name: 'Industrial Exhaust Fan',
+      category: 'Lighting',
+      image:
+        'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTFjrJ9hcksBTsQ3EnLZXinPTXGS1W3tHtO9-PRFotJIlUO7DsxOi65gFYkISvE',
+      specs: 'Size: 24 Inch, Power: 350W, Airflow: 8500m³/h, Low Noise.',
+    },
+    {
+      id: 34,
+      name: 'Soft Starter 45kW',
+      category: 'Electrical Control',
+      image:
+        'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSciB4Pcx_zHaohYKrowzBjTefrt0svRf3qTofmtr7XQNM4Xoh0vBknp2aJN22P',
+      specs: 'Voltage: 380V-440V, Built-in Bypass, Torque Control.',
+    },
+
+    {
+      id: 36,
+      name: 'Lightning Arrester',
+      category: 'Protection Device',
+      image:
+        'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQLWE8mA8c0UVzSCOhqWO1vAw5vp9PPWeEAI0YYM10sSUFSjpvMOriIpNACmmRs',
+      specs: 'System: 22kV, Discharge Current: 10kA, Zinc Oxide Type.',
+    },
+    {
+      id: 37,
+      name: 'Variable Resistor (Potentiometer)',
+      category: 'Automation',
+      image:
+        'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTZL_9IIfnujUWLJz8qfhmzkM5oC1HQvOWUF3EVDrlYkBACVNJp9SpDWOJkBdtN',
+      specs: 'Resistance: 10k Ohm, Power: 2W, Precision Control Knob.',
+    },
+    {
+      id: 38,
+      name: 'DC Power Supply 24V 10A',
+      category: 'Power Supply',
+      image:
+        'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSUAEFkkCqIa3RXsBA876AiGhKdTNxKvygtwAFQX-NHRSGIcWZW0zockPy3TBpI',
+      specs: 'Input: 110/220V AC, Output: 24V DC, Efficiency: 88%.',
+    },
+    {
+      id: 39,
+      name: 'Handheld Multimeter',
+      category: 'Measurement',
+      image:
+        'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTTKKijsDAeWGm8qD3V0YNQXWooEHo9A0boxQ5t_JfFy-nLBuvNmQizWTUoKOXU',
+      specs: 'Auto-ranging, CAT III 600V, Backlight LCD, NCV Testing.',
+    },
+    {
+      id: 40,
+      name: 'Flame Retardant Tape',
+      category: 'Wiring Access',
+      image:
+        'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT2KxvHbXs9_3aUJVMaL1U5J_6zwMJB2ZrED5Hm4XyqfusMSIBqIXCkMQd5NHur',
+      specs: 'Width: 19mm, Length: 20m, Insulating Voltage: 600V.',
+    },
   ]);
+
   searchTerm = signal('');
   filteredProducts = computed(() => {
     const term = this.searchTerm().toLowerCase().trim();
@@ -212,5 +359,17 @@ export class ProductListComponent {
   closeModal() {
     this.selectedProduct.set(null);
     document.body.style.overflow = 'auto';
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.isShow = window.scrollY > 400;
+  }
+
+  scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   }
 }

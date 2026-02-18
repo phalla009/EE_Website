@@ -720,3 +720,51 @@ button,
 .search-wrapper:focus-within {
   border-color: #f7c934;
 }
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background-color: #f7c934;
+  color: #000;
+  border: none;
+  border-radius: 50%;
+  font-size: 20px; /* បន្ថយទំហំបន្តិចឱ្យសមជាមួយរង្វង់ */
+  cursor: pointer;
+  z-index: 9999; /* ឱ្យខ្ពស់ជាងគេបំផុត */
+
+  /* ការពារការបាត់ Icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* បែបផែនបង្ហាញ/លាក់ */
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 15px rgba(247, 201, 52, 0.4);
+}
+
+/* នៅពេលមាន Class .show ពី Angular */
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-10px);
+}
+
+.back-to-top:hover {
+  background-color: #ffdf76;
+  transform: translateY(-15px);
+  box-shadow: 0 8px 20px #ffd23e4a;
+}
+
+/* Responsive សម្រាប់ទូរស័ព្ទ */
+@media (max-width: 576px) {
+  .back-to-top {
+    bottom: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+  }
+}

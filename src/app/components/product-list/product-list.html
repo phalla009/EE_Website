@@ -1,5 +1,5 @@
 <div class="featured-header">
-  <h2 class="featured-title">FEATURED PRODUCTS</h2>
+  <h2 class="featured-title">RECENT PRODUCTS</h2>
 </div>
 <div class="search-section">
   <div class="search-wrapper">
@@ -14,9 +14,8 @@
     />
   </div>
 </div>
-<!-- PRODUCT GRID (2 ROWS ONLY) -->
 <section class="product-grid">
-  @for (item of filteredProducts().slice(0, 8); track item.id) {
+  @for (item of filteredProducts().slice(8, -6); track item.id) {
     <div class="product-card" (click)="openDetails(item)">
       <div class="product-badge">{{ item.category }}</div>
 
@@ -33,132 +32,38 @@
     </div>
   }
 </section>
-
-<!-- BLOG SECTION -->
 <div class="featured-header">
   <h2 class="featured-title">LATEST PRODUCTS</h2>
 </div>
 <section class="blog-section">
   <div class="blog-grid">
-    <div class="blog-card">
-      <img
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkgoG5ogMhwy0mKhO6L2fQhOG-FPgcO4ybEDOljyEhDKyx7tgWm8rzZsT0MDCe"
-      />
-      <div class="blog-content">
-        <h4>Industrial Air Circuit Breaker (ACB)</h4>
-        <p [class.show-all]="expandedCards['Industrial']">
-          វាជាឧបករណ៍ការពារចរន្តអគ្គិសនីខ្នាតធំសម្រាប់រោងចក្រ
-          ដែលមានសមត្ថភាពខ្ពស់ក្នុងការកាត់ផ្តាច់ចរន្តដោយស្វ័យប្រវត្តិនៅពេលមានបញ្ហាឆ្លងសៀគ្វី
-          ឬលើសបន្ទុកខ្លាំង ដើម្បីការពារប្រព័ន្ធអគ្គិសនីទាំងមូលមិនឱ្យខូចខាត។ ACB
-          ប្រើប្រាស់ខ្យល់ដើម្បីពន្លត់ធ្នូភ្លើង (Arc) ដែលកើតឡើងពេលកាត់ផ្តាច់ចរន្ត
-          កាត់បន្ថយគ្រោះថ្នាក់នៃការឆេះទូបញ្ជាអគ្គិសនីមេ។
-        </p>
-        <a href="javascript:void(0)" class="read-more" (click)="toggleReadMore('Industrial')">
-          {{ expandedCards['Industrial'] ? 'Show Less' : 'Read More' }}
-          <i
-            class="fa-solid"
-            [ngClass]="expandedCards['Industrial'] ? 'fa-angles-up' : 'fa-arrow-right'"
-          ></i>
-        </a>
+    @for (post of filteredProducts().slice(-6); track post.id) {
+      <div class="blog-card" (click)="openDetails(post)" style="cursor: pointer">
+        <img [src]="post.image" />
+        <div class="blog-content">
+          <h4>{{ post.name }}</h4>
+          <div class="divider"></div>
+          <p [class.show-all]="expandedCards[post.id]">
+            {{ post.specs }}
+          </p>
+          <!-- <a href="javascript:void(0)" class="read-more" (click)="toggleReadMore(post.id)">
+            {{ expandedCards[post.id] ? 'Show Less' : 'Read More' }}
+            <i
+              class="fa-solid"
+              [ngClass]="expandedCards[post.id] ? 'fa-angles-up' : 'fa-arrow-right'"
+            ></i>
+          </a> -->
+        </div>
       </div>
-    </div>
-
-    <div class="blog-card">
-      <img
-        src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQURxRVe6DSRJ55pVOhIjJo_itOpbCtvtXO6JpJG6PK8djqkIVNI14Sp86BW85M"
-      />
-      <div class="blog-content">
-        <h4>Variable Frequency Drive (VFD)</h4>
-
-        <p [class.show-all]="expandedCards['Variable']">
-          VFD គឺជាបច្ចេកវិទ្យាដ៏ឆ្លាតវៃសម្រាប់គ្រប់គ្រងល្បឿន និងកម្លាំងបង្វិលរបស់ម៉ូទ័រអគ្គិសនី
-          ដែលជួយសន្សំសំចៃថាមពលបានយ៉ាងច្រើន និងកាត់បន្ថយការសឹកកកិតនៃគ្រឿងម៉ាស៊ីន។ វាកែប្រែប្រេកង់
-          និងតង់ស្យុងដែលផ្គត់ផ្គង់ទៅម៉ូទ័រ ធ្វើឱ្យដំណើរការចាប់ផ្តើម (Start-up) មានភាពរលូន
-          និងការពារមិនឱ្យម៉ូទ័រឡើងកម្ដៅខ្លាំង។
-        </p>
-        <a href="javascript:void(0)" class="read-more" (click)="toggleReadMore('Variable')">
-          {{ expandedCards['Variable'] ? 'Show Less' : 'Read More' }}
-          <i
-            class="fa-solid"
-            [ngClass]="expandedCards['Variable'] ? 'fa-angles-up' : 'fa-arrow-right'"
-          ></i>
-        </a>
-      </div>
-    </div>
-
-    <div class="blog-card">
-      <img
-        src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRvow5eXHbMN4i9ap_5jO8csgAn4hf309ypzC53GcbvcOewTgNVCjoZsf3-n0Qd"
-      />
-      <div class="blog-content">
-        <h4>High Voltage Power Transformer</h4>
-
-        <p [class.show-all]="expandedCards['High']">
-          ឧបករណ៍នេះដើរតួនាទីយ៉ាងសំខាន់ក្នុងការតម្លើង ឬទម្លាក់កម្រិតតង់ស្យុងអគ្គិសនី
-          ដើម្បីចែកចាយថាមពលពីខ្សែបណ្តាញមេទៅកាន់ទីតាំងប្រើប្រាស់ផ្សេងៗ ធានាបាននូវស្ថេរភាពចរន្ត។
-          វាត្រូវបានបំពាក់ដោយប្រព័ន្ធត្រជាក់ដោយប្រើប្រេង (Oil-cooled) និងស្លាបដែកបញ្ចេញកម្ដៅ
-          ដើម្បីធានាឱ្យការបញ្ជូនថាមពលមានប្រសិទ្ធភាព ២៤ ម៉ោងលើ ២៤ ម៉ោង។
-        </p>
-        <a href="javascript:void(0)" class="read-more" (click)="toggleReadMore('High')">
-          {{ expandedCards['High'] ? 'Show Less' : 'Read More' }}
-          <i
-            class="fa-solid"
-            [ngClass]="expandedCards['High'] ? 'fa-angles-up' : 'fa-arrow-right'"
-          ></i>
-        </a>
-      </div>
-    </div>
-    <div class="blog-card">
-      <img
-        src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRvow5eXHbMN4i9ap_5jO8csgAn4hf309ypzC53GcbvcOewTgNVCjoZsf3-n0Qd"
-      />
-      <div class="blog-content">
-        <h4>High Voltage Power Transformer</h4>
-
-        <p [class.show-all]="expandedCards['High']">
-          ឧបករណ៍នេះដើរតួនាទីយ៉ាងសំខាន់ក្នុងការតម្លើង ឬទម្លាក់កម្រិតតង់ស្យុងអគ្គិសនី
-          ដើម្បីចែកចាយថាមពលពីខ្សែបណ្តាញមេទៅកាន់ទីតាំងប្រើប្រាស់ផ្សេងៗ ធានាបាននូវស្ថេរភាពចរន្ត។
-          វាត្រូវបានបំពាក់ដោយប្រព័ន្ធត្រជាក់ដោយប្រើប្រេង (Oil-cooled) និងស្លាបដែកបញ្ចេញកម្ដៅ
-          ដើម្បីធានាឱ្យការបញ្ជូនថាមពលមានប្រសិទ្ធភាព ២៤ ម៉ោងលើ ២៤ ម៉ោង។
-        </p>
-        <a href="javascript:void(0)" class="read-more" (click)="toggleReadMore('High')">
-          {{ expandedCards['High'] ? 'Show Less' : 'Read More' }}
-          <i
-            class="fa-solid"
-            [ngClass]="expandedCards['High'] ? 'fa-angles-up' : 'fa-arrow-right'"
-          ></i>
-        </a>
-      </div>
-    </div>
-    <div class="blog-card">
-      <img
-        src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRvow5eXHbMN4i9ap_5jO8csgAn4hf309ypzC53GcbvcOewTgNVCjoZsf3-n0Qd"
-      />
-      <div class="blog-content">
-        <h4>High Voltage Power Transformer</h4>
-
-        <p [class.show-all]="expandedCards['High']">
-          ឧបករណ៍នេះដើរតួនាទីយ៉ាងសំខាន់ក្នុងការតម្លើង ឬទម្លាក់កម្រិតតង់ស្យុងអគ្គិសនី
-          ដើម្បីចែកចាយថាមពលពីខ្សែបណ្តាញមេទៅកាន់ទីតាំងប្រើប្រាស់ផ្សេងៗ ធានាបាននូវស្ថេរភាពចរន្ត។
-          វាត្រូវបានបំពាក់ដោយប្រព័ន្ធត្រជាក់ដោយប្រើប្រេង (Oil-cooled) និងស្លាបដែកបញ្ចេញកម្ដៅ
-          ដើម្បីធានាឱ្យការបញ្ជូនថាមពលមានប្រសិទ្ធភាព ២៤ ម៉ោងលើ ២៤ ម៉ោង។
-        </p>
-        <a href="javascript:void(0)" class="read-more" (click)="toggleReadMore('High')">
-          {{ expandedCards['High'] ? 'Show Less' : 'Read More' }}
-          <i
-            class="fa-solid"
-            [ngClass]="expandedCards['High'] ? 'fa-angles-up' : 'fa-arrow-right'"
-          ></i>
-        </a>
-      </div>
-    </div>
+    }
   </div>
 </section>
+
 <div class="featured-header">
-  <h2 class="featured-title">RECENT PRODUCTS</h2>
+  <h2 class="featured-title">FEATURED PRODUCTS</h2>
 </div>
 <section class="product-grid">
-  @for (item of filteredProducts().slice(8); track item.id) {
+  @for (item of filteredProducts().slice(0, 8); track item.id) {
     <div class="product-card" (click)="openDetails(item)">
       <div class="product-badge">{{ item.category }}</div>
       <div class="image-container">
@@ -173,7 +78,9 @@
     </div>
   }
 </section>
-
+<button class="back-to-top" [class.show]="isShow" (click)="scrollToTop()">
+  <i class="fa-solid fa-angles-up"></i>
+</button>
 @if (selectedProduct(); as product) {
   <div class="modal-overlay" (click)="closeModal()">
     <div class="modal-container" (click)="$event.stopPropagation()">
@@ -204,10 +111,11 @@
             </p>
           </div>
 
-          <button class="inquiry-btn">Inquiry Now</button>
+          <button class="inquiry-btn">Send to Seller</button>
         </div>
       </div>
     </div>
   </div>
 }
+
 <app-footer></app-footer>
