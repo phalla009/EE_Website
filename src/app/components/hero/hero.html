@@ -45,20 +45,20 @@
 <section class="blog-section">
   <div class="container">
     <div class="section-header fade-up">
-      <span class="subtitle">{{ blogData.header.tagline }}</span>
-      <h2>{{ blogData.header.title }}</h2>
+      <span class="subname">{{ blogData.header.tagline }}</span>
+      <h2>{{ blogData.header.name }}</h2>
       <p>{{ blogData.header.desc }}</p>
     </div>
 
     <div class="blog-grid">
       <article class="blog-card fade-up delay-1" *ngFor="let post of blogData.articles">
         <div class="blog-img">
-          <img [src]="post.img" [alt]="post.title" />
+          <img [src]="post.img" [alt]="post.name" />
           <span class="category">{{ post.category }}</span>
         </div>
         <div class="blog-info">
           <span class="date">{{ post.date }}</span>
-          <h3>{{ post.title }}</h3>
+          <h3>{{ post.name }}</h3>
 
           <p [class.show-all]="expandedCards[post.id]">
             {{ expandedCards[post.id] ? post.fullDesc : post.shortDesc }}

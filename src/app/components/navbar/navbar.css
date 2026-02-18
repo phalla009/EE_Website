@@ -224,7 +224,7 @@
     top: 0;
     right: -100%;
     width: 280px;
-    height: 100vh;
+    height: 2300vh;
     background: #3d484f;
     flex-direction: column;
     padding: 60px 20px;
@@ -270,6 +270,9 @@
   .dropdown-content li a {
     padding-left: 25px;
     font-size: 16px;
+  }
+  .logo .country-name {
+    margin-bottom: 0px;
   }
 }
 

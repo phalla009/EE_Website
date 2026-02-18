@@ -15,12 +15,12 @@
   </div>
 </div>
 <section class="product-grid">
-  @for (item of filteredProducts().slice(8, -6); track item.id) {
+  @for (item of filteredProducts().slice(0, 8); track item.id) {
     <div class="product-card" (click)="openDetails(item)">
       <div class="product-badge">{{ item.category }}</div>
 
       <div class="image-container">
-        <img [src]="item.image" [alt]="item.name" />
+        <img [src]="item.image[0]" [alt]="item.name" />
       </div>
 
       <div class="product-info">
@@ -39,7 +39,7 @@
   <div class="blog-grid">
     @for (post of filteredProducts().slice(-6); track post.id) {
       <div class="blog-card" (click)="openDetails(post)" style="cursor: pointer">
-        <img [src]="post.image" />
+        <img [src]="post.image[0]" />
         <div class="blog-content">
           <h4>{{ post.name }}</h4>
           <div class="divider"></div>
@@ -63,11 +63,11 @@
   <h2 class="featured-title">FEATURED PRODUCTS</h2>
 </div>
 <section class="product-grid">
-  @for (item of filteredProducts().slice(0, 8); track item.id) {
+  @for (item of filteredProducts().slice(8, -6); track item.id) {
     <div class="product-card" (click)="openDetails(item)">
       <div class="product-badge">{{ item.category }}</div>
       <div class="image-container">
-        <img [src]="item.image" [alt]="item.name" />
+        <img [src]="item.image[0]" [alt]="item.name" />
       </div>
       <div class="product-info">
         <h3>{{ item.name }}</h3>
@@ -88,8 +88,22 @@
 
       <div class="modal-content">
         <div class="modal-left">
+          <!-- Big Image -->
+          <img
+            [src]="selectedImg || product.image[0]"
+            alt="{{ product.name }}"
+            class="modal-main-img"
+          />
+
+          <!-- Thumbnail Images -->
           <div class="modal-img-wrapper">
-            <img [src]="product.image" [alt]="product.name" />
+            <img
+              *ngFor="let imgUrl of product.image"
+              [src]="imgUrl"
+              [alt]="product.name"
+              class="modal-img"
+              (click)="selectImage(imgUrl)"
+            />
           </div>
         </div>
 
@@ -106,8 +120,7 @@
           <div class="modal-section">
             <h4>Description</h4>
             <p>
-              High-quality professional grade equipment designed for durability and precision
-              performance in all conditions.
+              {{ product.description }}
             </p>
           </div>
 
