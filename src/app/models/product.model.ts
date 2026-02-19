@@ -4,4 +4,5 @@ export interface Product {
   category: string;
   specs: string;
   image: string;
+  description?: string;
 }

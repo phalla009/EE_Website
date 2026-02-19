@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Footer } from '../footer/footer';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-contact',
@@ -27,8 +28,8 @@ export class Contact {
 
   onSubmit() {
     if (this.contactForm.valid) {
-      const botToken = '8347289983:AAEj6d664dpnYUuG1sfsVfXNlYayJU-rs7U';
-      const chatId = '-1003811778242';
+      const botToken = environment.telegramToken;
+      const chatId = environment.telegramChatId;
 
       const formData = this.contactForm.value;
 
